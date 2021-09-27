@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import { ReactComponent as Gear } from '../../assets/icons/settings.svg';
+import { ReactComponent as Home } from '../../assets/icons/home.svg';
 import { AreaHeader } from './styled'
 
 function Header(){
@@ -15,12 +17,12 @@ function Header(){
                         <ul>
                             <li>
                                 <Link to="/">
-                                    Inicio
+                                    <Home width='20px' height='20px'  />
                                 </Link>
                             </li>
                             <li>
                                 <Link to="/config">
-                                    Configurações
+                                    <Gear width='20px' height='20px' />
                                 </Link>
                             </li>
                             <li>

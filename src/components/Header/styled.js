@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const AreaHeader = styled.div`
     height: 60px;
-    background-image: linear-gradient(to right,#00BFFF, #00FF7F);
+    background-image: linear-gradient(to right, #9FCAEC, #1D4064);
     color: #fff;
 
     .container{
@@ -28,11 +28,6 @@ export const AreaHeader = styled.div`
             a{
                 text-decoration: none;
                 color: #fff;
-
-                &:hover{
-                    color:#4F4F4F;
-                    font-size: 20px;
-                }
             }
         }
     }
