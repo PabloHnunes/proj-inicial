@@ -16,7 +16,7 @@ export const GlobalStyle = createGlobalStyle`
     --bg-accent: #9FCAEC;
     --text-color: #F0F8FF;
     --nav-size: 60px;
-    --border: 1px solid #474a4d;
+    --border: 1px solid #003366;
     --border-radius: 8px;
     --speed: 500ms;
     }

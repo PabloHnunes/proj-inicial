@@ -11,4 +11,5 @@ export const AreaDropMenu = styled.div`
     border-radius: var(--border-radius);
     padding: 1rem;
     overflow: hidden;
+    box-shadow: 3px 3px 10px black;
 `;
