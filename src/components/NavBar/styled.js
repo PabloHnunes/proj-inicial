@@ -15,8 +15,11 @@ export const AreaNavList = styled.ul`
 `;
 
 export const AreaLogo = styled.div`
+    max-width: 100%;
+    height: 20%;
     flex: 1;
-    img{
-        width: 50px;
-    }
+`;
+
+export const AreaImg = styled.img`   
+    width: 50px;
 `;

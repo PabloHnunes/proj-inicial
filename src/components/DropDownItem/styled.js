@@ -9,7 +9,8 @@ export const AreaDropItem = styled.a`
     transition: background var(--speed);
     padding: 0.5rem;
     :hover{
-        background-color: #525357;
+        background-color: var(--color-itens-bg);
+        color: #000000;
     }
 `;
 

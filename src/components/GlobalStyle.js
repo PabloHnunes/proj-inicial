@@ -11,9 +11,10 @@ export const GlobalStyle = createGlobalStyle`
     color: grey;
 }
 :root{
-    --bg: #242526;
-    --bg-accent: #484a4d;
-    --text-color: #dadce1;
+    --color-itens-bg: #9FCAEC;
+    --bg: #1D4064;
+    --bg-accent: #9FCAEC;
+    --text-color: #F0F8FF;
     --nav-size: 60px;
     --border: 1px solid #474a4d;
     --border-radius: 8px;

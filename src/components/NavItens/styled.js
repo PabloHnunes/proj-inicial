@@ -11,7 +11,7 @@ export const AreaLink = styled.a`
     --button-size: calc(var(--nav-size) * 0.5);
     width: var(--button-size);
     height: var(--button-size);
-    background-color: #484a4d;
+    background-color: var(--color-itens-bg);
     border-radius: 50%;
     padding: 5px;
     margin: 2px;

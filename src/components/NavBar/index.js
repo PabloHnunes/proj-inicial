@@ -1,12 +1,14 @@
 import React from 'react';
-import { AreaNav, AreaNavList, AreaLogo } from '../NavBar/styled';
+import Logo from '../../assets/img/logo-react.png'
+import { AreaNav, AreaNavList, AreaLogo, AreaImg } from '../NavBar/styled';
 
 function NavBar(props){
     return(
         <AreaNav>
             <AreaLogo>
-                <img src="../../../public/logo.png"></img>
+                <AreaImg src={ Logo }></AreaImg> 
             </AreaLogo>
+
             <AreaNavList>
                 {props.children}
             </AreaNavList>
