@@ -13,3 +13,10 @@ export const AreaNavList = styled.ul`
     display: flex;
     justify-content: flex-end;
 `;
+
+export const AreaLogo = styled.div`
+    flex: 1;
+    img{
+        width: 50px;
+    }
+`;

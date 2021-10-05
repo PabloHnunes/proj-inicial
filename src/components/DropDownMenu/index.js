@@ -16,6 +16,7 @@ import { AreaDropMenu } from '../DropDownMenu/styled';
 function DropDrownMenu(){
     return(
         <AreaDropMenu>
+
             <DropDrownItem leftIcon={<Perfil />} href="#">
                 Meu Perfil
             </DropDrownItem>
