@@ -5,6 +5,7 @@ export const AreaNav = styled.nav`
     background-image: linear-gradient(to right, #9FCAEC, #1D4064);
     padding: 0 1rem;
     border-bottom: var(--border);
+    box-shadow: 0 1px 5px black;
 `;
 
 export const AreaNavList = styled.ul`
