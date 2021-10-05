@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { ReactComponent as Gear } from '../../assets/icons/settings.svg';
 import { ReactComponent as Home } from '../../assets/icons/home.svg';
+
 import { AreaHeader } from './styled'
 
 function Header(){
@@ -23,11 +24,6 @@ function Header(){
                             <li>
                                 <Link to="/config">
                                     <Gear width='20px' height='20px' />
-                                </Link>
-                            </li>
-                            <li>
-                                <Link to="/logout">
-                                    Sair
                                 </Link>
                             </li>
                         </ul>

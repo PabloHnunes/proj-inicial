@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { useContext } from 'react';
 import { BrowserRouter, Switch, Route,Link } from 'react-router-dom';
 import { TextField } from '@material-ui/core';
-import FormularioCadastro from "../../components/FormularioCadastro/FormularioCadastro";
+import FormularioCadastro from "../../Components/FormularioCadastro/FormularioCadastro";
 import { Typography } from "@material-ui/core";
 
 import Api from '../../Api';
 
 import { AreaLogin }  from './styled';
-import { BtnDefautIcons, BtnDefaut } from '../../components/styled';
+import { BtnDefautIcons, BtnDefaut } from '../../Components/styled';
 import { ReactComponent as BackArrow } from '../../assets/icons/back-arrow.svg';
 import { ReactComponent as FacebookIcon } from '../../assets/icons/facebook-1.svg';
 import { ReactComponent as GoogleIcon } from '../../assets/icons/google-1.svg';

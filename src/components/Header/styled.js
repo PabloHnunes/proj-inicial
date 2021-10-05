@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 
 export const AreaHeader = styled.div`
-    height: 60px;
+    height: var(--nav-size);
     background-image: linear-gradient(to right, #9FCAEC, #1D4064);
+    border-bottom: var(--border);
     color: #fff;
 
     .container{
@@ -20,14 +21,16 @@ export const AreaHeader = styled.div`
 
     nav{
         ul{
-            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
         }
         li{
             list-style: none;
             margin-left: 20px;
             a{
                 text-decoration: none;
-                color: #fff;
+                color: var(--text-color);
             }
         }
     }
