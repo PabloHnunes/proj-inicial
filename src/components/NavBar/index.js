@@ -1,5 +1,5 @@
 import React from 'react';
-import Logo from '../../assets/img/logo-react.png'
+import Logo from '../../assets/img/logo-react-2.png'
 import { AreaNav, AreaNavList, AreaLogo, AreaImg } from '../NavBar/styled';
 
 function NavBar(props){
