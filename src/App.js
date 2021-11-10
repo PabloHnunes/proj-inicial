@@ -41,7 +41,6 @@ function App() {
       <GlobalStyle />
       {/* <Header /> */}
       <NavBar>
-        <NavItens icon={<Arrow />} />
         <NavItens icon={<Buger />} >
           <DropDrownMenu/>
         </NavItens>
