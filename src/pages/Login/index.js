@@ -34,78 +34,78 @@ function LoginUser ({ onReceiveGoogle }) {
 
     return (
         <BrowserRouter>
-        <Switch>
-            <Route exact path='/registrar'>
-                <AreaLogin> 
-                    <h1 className='titulo'>
-                        <Link to='/'><BackArrow width='10px' /></Link>
-                        Crie sua conta
-                    </h1>
+            <Switch>
+                <Route exact path='/registrar'>
+                    <AreaLogin> 
+                        <h1 className='titulo'>
+                            <Link to='/'><BackArrow width='10px' /></Link>
+                            Crie sua conta
+                        </h1>
 
-                    <Typography variant="h3" component="h1" align="center">Formulário de Cadastro</Typography>
-                    <ValidacoesCadastro.Provider value={{cpf:validarCpf, senha:validarSenha, nome:validarNome}}>
-                    <FormularioCadastro onSubmit={whySubmit} />
-                    </ValidacoesCadastro.Provider>
+                        <Typography variant="h3" component="h1" align="center">Formulário de Cadastro</Typography>
+                        <ValidacoesCadastro.Provider value={{cpf:validarCpf, senha:validarSenha, nome:validarNome}}>
+                        <FormularioCadastro onSubmit={whySubmit} />
+                        </ValidacoesCadastro.Provider>
 
-                    <div className='footerLogin'>
-                        Já tem um conta ?
-                        <Link to='/'>Faça login</Link>
-                    </div>
-                </AreaLogin>
+                        <div className='footerLogin'>
+                            Já tem um conta ?
+                            <Link to='/'>Faça login</Link>
+                        </div>
+                    </AreaLogin>
 
-            </Route>
-            <Route exact path='*'>
-                <AreaLogin>
+                </Route>
+                <Route exact path='*'>
+                    <AreaLogin>
 
-                    <h1> Faça login em sua conta </h1>
+                        <h1> Faça login em sua conta </h1>
 
-                    <form>
-                    <TextField
-                    value={email}
-                    onChange={(evento) =>{
-                        setEmail(evento.target.value);
-                    }} 
-                    id="email" 
-                    label="Email" 
-                    type="email" 
-                    margin="normal"
-                    variant="outlined"
-                    required 
-                    fullWidth/>
-                    <TextField 
-                    value={senha}
-                    onChange={(evento) =>{
-                        setSenha(evento.target.value);
-                    }}
-                    id="senha"
-                    name="senha" 
-                    label="Senha" 
-                    type="password" 
-                    margin="normal"
-                    required
-                    variant="outlined" 
-                    fullWidth/>
-                    </form>
-                    <BtnDefaut> Entrar </BtnDefaut>
-                    <div className='footerLogin'>
-                        Não tem uma conta ?
-                        <Link to='/registrar'>Registre-se</Link>
-                    </div>
+                        <form>
+                        <TextField
+                        value={email}
+                        onChange={(evento) =>{
+                            setEmail(evento.target.value);
+                        }} 
+                        id="email" 
+                        label="Email" 
+                        type="email" 
+                        margin="normal"
+                        variant="outlined"
+                        required 
+                        fullWidth/>
+                        <TextField 
+                        value={senha}
+                        onChange={(evento) =>{
+                            setSenha(evento.target.value);
+                        }}
+                        id="senha"
+                        name="senha" 
+                        label="Senha" 
+                        type="password" 
+                        margin="normal"
+                        required
+                        variant="outlined" 
+                        fullWidth/>
+                        </form>
+                        <BtnDefaut> Entrar </BtnDefaut>
+                        <div className='footerLogin'>
+                            Não tem uma conta ?
+                            <Link to='/registrar'>Registre-se</Link>
+                        </div>
 
-                    <p> OU </p>
+                        <p> OU </p>
 
-                    <BtnDefautIcons>
-                        <FacebookIcon width='20px'/>
-                        <div className="center"> Fazer login com o Facebook </div>
-                    </BtnDefautIcons>
-                    <BtnDefautIcons onClick={actionLoginGoogle}>
-                        <GoogleIcon width='20px' height='20px'/>
-                        <div className="center"> Fazer login com o Google </div>
-                    </BtnDefautIcons>
+                        <BtnDefautIcons>
+                            <FacebookIcon width='20px'/>
+                            <div className="center"> Fazer login com o Facebook </div>
+                        </BtnDefautIcons>
+                        <BtnDefautIcons onClick={actionLoginGoogle}>
+                            <GoogleIcon width='20px' height='20px'/>
+                            <div className="center"> Fazer login com o Google </div>
+                        </BtnDefautIcons>
 
-                </AreaLogin>
-            </Route>
-        </Switch>
+                    </AreaLogin>
+                </Route>
+            </Switch>
             
         </BrowserRouter>
         

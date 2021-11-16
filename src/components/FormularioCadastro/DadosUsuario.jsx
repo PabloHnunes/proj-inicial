@@ -9,7 +9,7 @@ import { BtnDefaut } from '../styled';
 function DadosUsuario({onSubmit}) { 
     const [email,setEmail] = useState("");
     const [senha,setSenha] = useState("");
-    const validacoes = useContext(ValidacoesCadastro)
+    const validacoes = useContext(ValidacoesCadastro);
     const [erros, validarCampos, possoEnviar] = useErros(validacoes);
     
 
@@ -20,7 +20,7 @@ function DadosUsuario({onSubmit}) {
             if(possoEnviar()){
                 onSubmit({email,senha});
             }
-        }}>
+        }}>s
             <TextField
             value={email}
             onChange={(evento) =>{
