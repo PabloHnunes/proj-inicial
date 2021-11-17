@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Switch, Route } from 'react-router-dom';
-import { Autocomplete, TextField, useTheme } from '@material-ui/core';
-import { TitlePage } from "../../Components/Main";
+import { Autocomplete, TextField, useTheme, Grid } from '@material-ui/core';
+import { DatePickerComponent } from "@syncfusion/ej2-react-calendars";
+import { ContrainerPage, TitlePage } from "../../Components/Main";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -105,56 +105,76 @@ const Orcamento = () => {
     const theme = useTheme();
     const [ nrOrcamento, setNrOrcamento ] = useState("");
     const [ cliente, setCliente ] = useState("");
+    const [ dataEmissao, setDataEmissao ] = useState(new Date());
 
     return (
-            <form>
-                <TitlePage>Orçamento de produtos</TitlePage>
-                
-                <TextField
-                sx={{ m: 2, width: 150 }}
-                value={nrOrcamento}
-                onChange={(evento) =>{
-                setNrOrcamento(evento.target.value);
-                }} 
-                id="nrOrcamento" 
-                label="N° Orçamento" 
-                type="nrOrcamento" 
-                margin="normal"
-                variant="outlined"
-                required
-                >
-                    N° Orçamento
-                </TextField>
-                <Autocomplete
-                disablePortal
-                id="cliente"
-                options={names}
-                sx={{ m: 2 ,width: 300 }}
-                renderInput={(params) => <TextField {...params} label="Cliente" />}
-                />
-                <Autocomplete
-                disablePortal
-                id="condicao-pagamento"
-                options={normalize(condicoesPag)}
-                sx={{ m: 2 ,width: 300 }}
-                renderInput={(params) => <TextField {...params} label="Condição de Pagamento" />}
-                />
-                <Autocomplete
-                disablePortal
-                id="forma-pagamento"
-                options={normalize(formasPag)}
-                sx={{ m: 2 ,width: 300 }}
-                renderInput={(params) => <TextField {...params} label="Forma de Pagamento" />}
-                />
-                <Autocomplete
-                disablePortal
-                id="empresa"
-                options={normalize(empresas)}
-                sx={{ m: 2 ,width: 300 }}
-                renderInput={(params) => <TextField {...params} label="Empresa" />}
-                />
-
-            </form>
+        <ContrainerPage className="container-orcamento">
+            <TitlePage>Orçamento de produtos</TitlePage>
+            
+            <TextField
+            sx={{ m: 2, width: 150 }}
+            value={nrOrcamento}
+            onChange={(evento) =>{
+            setNrOrcamento(evento.target.value);
+            }} 
+            id="nrOrcamento" 
+            label="N° Orçamento" 
+            type="nrOrcamento" 
+            margin="normal"
+            variant="standard"
+            required
+            />
+            <Grid container spacing={1} >
+                <Grid item xs={3}>
+                    <Autocomplete
+                    disablePortal
+                    id="empresa"
+                    options={normalize(empresas)}
+                    sx={{ width: 300 }}
+                    renderInput={(params) => <TextField {...params} variant="standard" label="Empresa" />}
+                    />
+                </Grid>
+                <Grid item xs={3}>
+                    <Autocomplete
+                    disablePortal
+                    id="cliente"
+                    options={names}
+                    sx={{ width: 300 }}
+                    renderInput={(params) => <TextField {...params} variant="standard" label="Cliente" />}
+                    />
+                </Grid>
+                <Grid item xs={3}>
+                    <Autocomplete
+                    disablePortal
+                    id="condicao-pagamento"
+                    options={normalize(condicoesPag)}
+                    sx={{width: 300 }}
+                    renderInput={(params) => <TextField {...params} variant="standard" label="Condição de Pagamento" />}
+                    />
+                </Grid>
+                <Grid item xs={3}>
+                    <Autocomplete
+                    disablePortal
+                    id="forma-pagamento"
+                    options={normalize(formasPag)}
+                    sx={{width: 300 }}
+                    renderInput={(params) => <TextField {...params} variant="standard" label="Forma de Pagamento" />}
+                    />
+                </Grid>
+                <Grid item xs={3}>
+                    <DatePickerComponent 
+                    placeholder="Data Emissão"
+                    format="dd/MM/yyyy"
+                    />
+                </Grid>.
+                <Grid item xs={3}>
+                    <DatePickerComponent 
+                    placeholder="Data Entrega"
+                    format="dd/MM/yyyy"
+                    />
+                </Grid>
+            </Grid>
+        </ContrainerPage>
     );
 }
 
