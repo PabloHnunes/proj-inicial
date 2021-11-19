@@ -53,7 +53,7 @@ function DropDrownMenu(){
 
                     <DropDrownItem 
                     leftIcon={<Gear />} 
-                    rightIcon={<Arrow3 />}
+                    rightIcon={<Arrow3 width='30px' height='30px'/>}
                     goToMenu="config">
                         Configurações
                     </DropDrownItem>

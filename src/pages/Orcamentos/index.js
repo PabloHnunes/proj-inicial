@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import { Autocomplete, TextField, useTheme, Grid } from '@material-ui/core';
+import { Autocomplete, TextField, useTheme, Grid, InputAdornment, OutlinedInput, Fab } from '@material-ui/core';
 import { DatePickerComponent } from "@syncfusion/ej2-react-calendars";
 import { ContrainerPage, TitlePage } from "../../Components/Main";
+import { ReactComponent as Plus } from '../../assets/icons/plus.svg';
+import { ReactComponent as Carrinho } from '../../assets/icons/carrinho.svg';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -82,6 +84,23 @@ const empresas = [
         value: 4
     }
 ];
+const transportadoras = [ 
+    {
+        label:'Neves transportes',
+        cnpj:'62317842000129'
+    },
+    {
+        label:'Auto transporte',
+        cnpj:'49129710000105'
+    }
+]
+const statusPedido = [ 
+    'Novo',
+    'Agendado',
+    'Em Processo',
+    'Cancelado',
+    'Em Atraso'
+]
 
 const normalize = (a) => {
     return a.map((e) => { 
@@ -91,21 +110,47 @@ const normalize = (a) => {
         }
     });
 }
-  
-  function getStyles(name, personName, theme) {
-    return {
-      fontWeight:
-        personName.indexOf(name) === -1
-          ? theme.typography.fontWeightRegular
-          : theme.typography.fontWeightMedium,
-    };
-  }
+const normalizeTransportadora = ( t ) => {
+    return t.map((e) => {
+        const cnpj = Number(e.cnpj);
+        return {
+            value: cnpj,
+            label: `${e.cnpj.substring(0,8)}.${e.cnpj.substring(8,12)}/${e.cnpj.substring(12,14)} - ${e.label}`
+        }
+    })
+}
 
 const Orcamento = () => {
     const theme = useTheme();
     const [ nrOrcamento, setNrOrcamento ] = useState("");
+    const [ transportadora, setTransportadora ] = useState();
     const [ cliente, setCliente ] = useState("");
     const [ dataEmissao, setDataEmissao ] = useState(new Date());
+    const [ dataEntrega, setDataEntrega ] = useState(new Date());
+    const [ desconto, setDesconto ] = useState(0);
+    const [ status, setStatus ] = useState("");
+
+    const handleChangeDataEmissao = (e) => {
+        setDataEmissao(e.target.value);
+      };
+    const handleChangeDataEntrega = (e) => {
+        setDataEntrega(e.target.value);
+    }
+    const handleChangeDesconto = (e) =>{
+        setDesconto(e.target.value);
+    }
+    const handlesChangeTransportadora = (e) =>{
+        setTransportadora(e.target.value);
+    }
+    const gerarNrOrdem = () =>{
+        setNrOrcamento(Math.floor(Math.random() * 65536));
+        setStatus('Novo');
+    }
+
+    const defaultProps = {
+        options: transportadoras,
+        getOptionsLabel: (options) => options.title
+    };
 
     return (
         <ContrainerPage className="container-orcamento">
@@ -116,7 +161,7 @@ const Orcamento = () => {
             value={nrOrcamento}
             onChange={(evento) =>{
             setNrOrcamento(evento.target.value);
-            }} 
+            }}
             id="nrOrcamento" 
             label="N° Orçamento" 
             type="nrOrcamento" 
@@ -124,13 +169,16 @@ const Orcamento = () => {
             variant="standard"
             required
             />
+            <Fab size="small" aria-label="add" onClick={gerarNrOrdem} sx={{ m:2 }}>
+                <Plus />
+            </Fab>
             <Grid container spacing={1} >
                 <Grid item xs={3}>
                     <Autocomplete
                     disablePortal
                     id="empresa"
                     options={normalize(empresas)}
-                    sx={{ width: 300 }}
+                    sx={{ width: 400 }}
                     renderInput={(params) => <TextField {...params} variant="standard" label="Empresa" />}
                     />
                 </Grid>
@@ -139,7 +187,7 @@ const Orcamento = () => {
                     disablePortal
                     id="cliente"
                     options={names}
-                    sx={{ width: 300 }}
+                    sx={{ width: 400 }}
                     renderInput={(params) => <TextField {...params} variant="standard" label="Cliente" />}
                     />
                 </Grid>
@@ -148,7 +196,7 @@ const Orcamento = () => {
                     disablePortal
                     id="condicao-pagamento"
                     options={normalize(condicoesPag)}
-                    sx={{width: 300 }}
+                    sx={{width: 400 }}
                     renderInput={(params) => <TextField {...params} variant="standard" label="Condição de Pagamento" />}
                     />
                 </Grid>
@@ -157,20 +205,89 @@ const Orcamento = () => {
                     disablePortal
                     id="forma-pagamento"
                     options={normalize(formasPag)}
-                    sx={{width: 300 }}
+                    sx={{width: 400 }}
                     renderInput={(params) => <TextField {...params} variant="standard" label="Forma de Pagamento" />}
                     />
                 </Grid>
                 <Grid item xs={3}>
                     <DatePickerComponent 
                     placeholder="Data Emissão"
+                    value={dataEmissao}
+                    //onChange={handleChangeDataEmissao}
                     format="dd/MM/yyyy"
                     />
-                </Grid>.
+                </Grid>
                 <Grid item xs={3}>
                     <DatePickerComponent 
                     placeholder="Data Entrega"
+                    value={dataEntrega}
+                    //onChange={handleChangeDataEntrega}
                     format="dd/MM/yyyy"
+                    />
+                </Grid>
+                <Grid item xs={0}>
+                    <TextField
+                        variant="standard"
+                        label="Desconto"
+                        id="desconto"
+                        type="number"
+                        value={desconto}
+                        sx={{width: 70 }}
+                        onChange={handleChangeDesconto}
+                        InputProps={{
+                            startAdornment: <InputAdornment position="start">%</InputAdornment>,
+                        }}
+                        />
+                </Grid>
+                <Grid item xs={0}>
+                    <Autocomplete
+                    {...defaultProps}
+                    value={transportadora}
+                    id="transportadora"
+                    onChange={(event, newTrans) =>{
+                        setTransportadora(newTrans);
+                    }}
+                    options={normalizeTransportadora(transportadoras)}
+                    sx={{width: 400 }}
+                    renderInput={(params) => <TextField {...params} variant="standard" label="Transportadora" />}
+                    />
+                </Grid>
+                <Grid item xs={1}>
+                    <Autocomplete
+                    value={status}
+                    id="status-pedido"
+                    onChange={(event, newStatus) =>{
+                        setStatus(newStatus);
+                    }}
+                    options={statusPedido}
+                    sx={{width: 200 }}
+                    renderInput={(params) => <TextField {...params} variant="standard" label="Status do Pedido" />}
+                    />
+                </Grid>
+            </Grid>
+            <TextField
+                    id="observacoes"
+                    label="Observação"
+                    multiline
+                    rows={4}
+                    sx={{ m:2 }}
+                    //variant="standard"
+                    fullWidth
+                    />
+            <Grid container spacing={1}>
+                <Grid item sx={1} >
+                        <TextField
+                        id="valorPedido"
+                        label="Valor do Pedido"
+                        disabled
+                        InputProps={{
+                        startAdornment: (
+                            <InputAdornment position="start">
+                                <Carrinho width='30px' height='30px'/>
+                            </InputAdornment>
+                        ),
+                        }}
+                        variant="standard"
                     />
                 </Grid>
             </Grid>
