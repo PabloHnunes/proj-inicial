@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Autocomplete, TextField, useTheme, Grid, InputAdornment, OutlinedInput, Fab } from '@material-ui/core';
 import { DatePickerComponent } from "@syncfusion/ej2-react-calendars";
-import { ContrainerPage, TitlePage } from "../../Components/Main";
 import { ReactComponent as Plus } from '../../assets/icons/plus.svg';
 import { ReactComponent as Carrinho } from '../../assets/icons/carrinho.svg';
+import { ContainerOrcamento } from "./styled";
+import { TitlePage } from "../../Components/Main";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -100,7 +101,7 @@ const statusPedido = [
     'Em Processo',
     'Cancelado',
     'Em Atraso'
-]
+];
 
 const normalize = (a) => {
     return a.map((e) => { 
@@ -109,7 +110,8 @@ const normalize = (a) => {
             label: `${e.value} - ${ e.label }`
         }
     });
-}
+};
+
 const normalizeTransportadora = ( t ) => {
     return t.map((e) => {
         const cnpj = Number(e.cnpj);
@@ -118,7 +120,7 @@ const normalizeTransportadora = ( t ) => {
             label: `${e.cnpj.substring(0,8)}.${e.cnpj.substring(8,12)}/${e.cnpj.substring(12,14)} - ${e.label}`
         }
     })
-}
+};
 
 const Orcamento = () => {
     const theme = useTheme();
@@ -129,6 +131,8 @@ const Orcamento = () => {
     const [ dataEntrega, setDataEntrega ] = useState(new Date());
     const [ desconto, setDesconto ] = useState(0);
     const [ status, setStatus ] = useState("");
+    const [ valorPedido, setValorPedido ] = useState(0);
+    const [ editavel, setEditavel ] = useState(true);
 
     const handleChangeDataEmissao = (e) => {
         setDataEmissao(e.target.value);
@@ -145,6 +149,7 @@ const Orcamento = () => {
     const gerarNrOrdem = () =>{
         setNrOrcamento(Math.floor(Math.random() * 65536));
         setStatus('Novo');
+        setEditavel(false);
     }
 
     const defaultProps = {
@@ -153,7 +158,7 @@ const Orcamento = () => {
     };
 
     return (
-        <ContrainerPage className="container-orcamento">
+        <ContainerOrcamento className="container-orcamento">
             <TitlePage>Orçamento de produtos</TitlePage>
             
             <TextField
@@ -172,118 +177,110 @@ const Orcamento = () => {
             <Fab size="small" aria-label="add" onClick={gerarNrOrdem} sx={{ m:2 }}>
                 <Plus />
             </Fab>
-            <Grid container spacing={1} >
-                <Grid item xs={3}>
-                    <Autocomplete
-                    disablePortal
-                    id="empresa"
-                    options={normalize(empresas)}
-                    sx={{ width: 400 }}
-                    renderInput={(params) => <TextField {...params} variant="standard" label="Empresa" />}
-                    />
-                </Grid>
-                <Grid item xs={3}>
-                    <Autocomplete
-                    disablePortal
-                    id="cliente"
-                    options={names}
-                    sx={{ width: 400 }}
-                    renderInput={(params) => <TextField {...params} variant="standard" label="Cliente" />}
-                    />
-                </Grid>
-                <Grid item xs={3}>
-                    <Autocomplete
-                    disablePortal
-                    id="condicao-pagamento"
-                    options={normalize(condicoesPag)}
-                    sx={{width: 400 }}
-                    renderInput={(params) => <TextField {...params} variant="standard" label="Condição de Pagamento" />}
-                    />
-                </Grid>
-                <Grid item xs={3}>
-                    <Autocomplete
-                    disablePortal
-                    id="forma-pagamento"
-                    options={normalize(formasPag)}
-                    sx={{width: 400 }}
-                    renderInput={(params) => <TextField {...params} variant="standard" label="Forma de Pagamento" />}
-                    />
-                </Grid>
-                <Grid item xs={3}>
-                    <DatePickerComponent 
-                    placeholder="Data Emissão"
-                    value={dataEmissao}
-                    //onChange={handleChangeDataEmissao}
-                    format="dd/MM/yyyy"
-                    />
-                </Grid>
-                <Grid item xs={3}>
-                    <DatePickerComponent 
-                    placeholder="Data Entrega"
-                    value={dataEntrega}
-                    //onChange={handleChangeDataEntrega}
-                    format="dd/MM/yyyy"
-                    />
-                </Grid>
-                <Grid item xs={0}>
-                    <TextField
-                        variant="standard"
-                        label="Desconto"
-                        id="desconto"
-                        type="number"
-                        value={desconto}
-                        sx={{width: 70 }}
-                        onChange={handleChangeDesconto}
-                        InputProps={{
-                            startAdornment: <InputAdornment position="start">%</InputAdornment>,
-                        }}
-                        />
-                </Grid>
-                <Grid item xs={0}>
-                    <Autocomplete
-                    {...defaultProps}
-                    value={transportadora}
-                    id="transportadora"
-                    onChange={(event, newTrans) =>{
-                        setTransportadora(newTrans);
-                    }}
-                    options={normalizeTransportadora(transportadoras)}
-                    sx={{width: 400 }}
-                    renderInput={(params) => <TextField {...params} variant="standard" label="Transportadora" />}
-                    />
-                </Grid>
-                <Grid item xs={1}>
-                    <Autocomplete
-                    value={status}
-                    id="status-pedido"
-                    onChange={(event, newStatus) =>{
-                        setStatus(newStatus);
-                    }}
-                    options={statusPedido}
-                    sx={{width: 200 }}
-                    renderInput={(params) => <TextField {...params} variant="standard" label="Status do Pedido" />}
-                    />
-                </Grid>
-            </Grid>
+            <Autocomplete
+            disabled={editavel}
+            id="empresa"
+            options={normalize(empresas)}
+            renderInput={(params) => <TextField {...params} variant="standard" label="Empresa" />}
+            fullWidth
+            />
+            <Autocomplete
+            disabled={editavel}
+            id="cliente"
+            options={names}
+            renderInput={(params) => <TextField {...params} variant="standard" label="Cliente" />}
+            fullWidth
+            />
+            <Autocomplete
+            disabled={editavel}
+            id="condicao-pagamento"
+            options={normalize(condicoesPag)}
+            renderInput={(params) => <TextField {...params} variant="standard" label="Condição de Pagamento" />}
+            fullWidth
+            />
+            <Autocomplete
+            disabled={editavel}
+            id="forma-pagamento"
+            options={normalize(formasPag)}
+            renderInput={(params) => <TextField {...params} variant="standard" label="Forma de Pagamento" />}
+            fullWidth
+            />
+            <DatePickerComponent 
+            disabled={editavel}
+            placeholder="Data Emissão"
+            value={dataEmissao}
+            //onChange={handleChangeDataEmissao}
+            format="dd/MM/yyyy"
+            />
+            <DatePickerComponent 
+            disabled={editavel}
+            placeholder="Data Entrega"
+            value={dataEntrega}
+            //onChange={handleChangeDataEntrega}
+            format="dd/MM/yyyy"
+            />
             <TextField
-                    id="observacoes"
-                    label="Observação"
-                    multiline
-                    rows={4}
-                    sx={{ m:2 }}
-                    //variant="standard"
-                    fullWidth
-                    />
-            <Grid container spacing={1}>
-                <Grid item sx={1} >
+            disabled={editavel}
+            variant="standard"
+            label="Desconto"
+            id="desconto"
+            type="number"
+            value={desconto}
+            onChange={handleChangeDesconto}
+            InputProps={{
+                startAdornment: <InputAdornment position="start">%</InputAdornment>,
+            }}
+            />
+            <Autocomplete
+            {...defaultProps}
+            disabled={editavel}
+            value={transportadora}
+            id="transportadora"
+            onChange={(event, newTrans) =>{
+                setTransportadora(newTrans);
+            }}
+            options={normalizeTransportadora(transportadoras)}
+            renderInput={(params) => <TextField {...params} variant="standard" label="Transportadora" />}
+            fullWidth
+            />
+            <Autocomplete
+            disabled={status == 'Novo' ? true : false}
+            value={status}
+            id="status-pedido"
+            onChange={(event, newStatus) =>{
+                setStatus(newStatus);
+            }}
+            options={statusPedido}
+            renderInput={(params) => <TextField {...params} variant="standard" label="Status do Pedido" />}
+            fullWidth
+            />
+            <TextField
+            disabled={editavel}
+            id="observacoes"
+            label="Observação"
+            multiline
+            rows={4}
+            sx={{ m:2 }}
+            //variant="standard"
+            InputProps={{
+                startAdornment: (
+                    <InputAdornment position="start"/>
+                )
+                }}
+            fullWidth
+            />
+            <Grid container spacing={2} sx={{ m:2 }}>
+                <Grid item >
                         <TextField
                         id="valorPedido"
                         label="Valor do Pedido"
-                        disabled
+                        value={valorPedido}
+                        disabled={true}
                         InputProps={{
                         startAdornment: (
                             <InputAdornment position="start">
                                 <Carrinho width='30px' height='30px'/>
+                                R$
                             </InputAdornment>
                         ),
                         }}
@@ -291,7 +288,7 @@ const Orcamento = () => {
                     />
                 </Grid>
             </Grid>
-        </ContrainerPage>
+        </ContainerOrcamento>
     );
 }
 
