@@ -1,11 +1,20 @@
-import React from 'react';
-import { ContrainerPage, TitlePage } from '../../Components/Main'
+import React from "react";
 const Page = () => {
-    return(
-        <ContrainerPage>
-            <TitlePage>Sobre: </TitlePage>
-        </ContrainerPage>
-    );
-}
+  return (
+    <>
+      <div className="tabs">
+        <input type="radio" name="tabs" id="tabone" defaultChecked/>
+        <label for="tabone">Capa do Pedido</label>
+        <div className="tab">
+        </div>
+
+        <input type="radio" name="tabs" id="tabtwo" />
+        <label for="tabtwo">Pedidos</label>
+        <div className="tab">
+        </div>
+      </div>
+    </>
+  );
+};
 
 export default Page;
