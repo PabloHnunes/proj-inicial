@@ -7,6 +7,7 @@ import {
   InputAdornment,
   OutlinedInput,
   Fab,
+  Button,
 } from "@material-ui/core";
 import { DatePickerComponent } from "@syncfusion/ej2-react-calendars";
 import { ReactComponent as Plus } from "../../assets/icons/plus.svg";
@@ -365,10 +366,14 @@ const Orcamento = () => {
             />
           </Grid>
           <Grid item>
-            <BtnDefaut> Confirmar </BtnDefaut>
+            <Button variant="contained" color="success">
+              Aprovar
+            </Button>
           </Grid>
           <Grid item>
-            <BtnDefaut> Cancelar </BtnDefaut>
+            <Button variant="contained" color="error">
+              Cancelar
+            </Button>
           </Grid>
         </Grid>
       </ContainerTabs>

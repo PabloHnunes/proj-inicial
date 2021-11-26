@@ -16,7 +16,7 @@ export const ContainerOrcamento = styled.div`
   width: auto;
 
   .tabs-label{
-    color: white;
+    color: #F0F8FF;
     order: 1;
     display: flex;
     justify-content: center;
@@ -24,15 +24,14 @@ export const ContainerOrcamento = styled.div`
     padding: 1rem 2rem;
     margin-right: 0.2rem;
     cursor: pointer;
-    background-color: #343436;
+    background-color: #B0C4DE;
     font-weight: bold;
     transition: background ease 0.3s;
     border-radius: 15px 15px 0 0;
-    box-shadow: 1px 2px 2px 1px black;
   }
 
   input[type="radio"]:checked + .tabs-label {
-    background: #fff;
+    background: #FFF5EE;
     color: #343436;
   }
   input[type="radio"]:checked + .tabs-label + .tab {
@@ -42,7 +41,7 @@ export const ContainerOrcamento = styled.div`
     display: none;
   }
   .tab {
-    border: 1px solid #343436;
+    //  border: 1px solid #343436;
     border-radius: 5px;
     order: 9;
     flex-grow: 1;
@@ -50,7 +49,7 @@ export const ContainerOrcamento = styled.div`
     height: 100%;
     display: none;
     padding: 1rem;
-    background: #fff;
+    background: #FFF5EE;
     padding: 20px;
   }
   @media (max-width: 465px) {
