@@ -31,6 +31,80 @@ const produtos = [
   },
 ];
 
+const tamanhos = [
+  {
+    label:"PP",
+    value: 1
+  },
+  {
+    label:"P",
+    value: 2
+  },
+  {
+    label:"M",
+    value: 3
+  },
+  {
+    label:"G",
+    value: 4
+  }
+];
+
+const cores = [
+  {
+    label:"Azul",
+    value: 1
+  },
+  {
+    label:"Vermelho",
+    value: 2
+  },
+  {
+    label:"Amarelo",
+    value: 3
+  }
+];
+
+const estampas = [
+  {
+    label:"Rosario",
+    value: 1
+  },
+  {
+    label:"Militar",
+    value: 2
+  },
+  {
+    label:"Logo Empresa",
+    value: 3
+  }
+]
+
+const bordados = [
+  {
+    label:"Brasão escolar",
+    value: 1
+  },
+  {
+    label:"Logo Empresarial",
+    value: 2
+  }
+];
+const variaveis = [
+  {
+    label:"Rosario",
+    value: 1
+  },
+  {
+    label:"Militar",
+    value: 2
+  },
+  {
+    label:"Logo Empresa",
+    value: 3
+  }
+ ]
+
 const names = [
   {
     label: "Oliver Hansen",
@@ -343,6 +417,52 @@ const Orcamento = () => {
               renderInput={(params) => (
                 <TextField {...params} variant="standard" label="Produtos" />
               )}
+              fullWidth
+            />
+            <Autocomplete
+              disabled={editavel}
+              id="tamanhos"
+              options={normalize(tamanhos)}
+              renderInput={(params) => (
+                <TextField {...params} variant="standard" label="Tamanho" />
+              )}
+              fullWidth
+            />
+            <Autocomplete
+              disabled={editavel}
+              id="cor"
+              options={normalize(cores)}
+              renderInput={(params) => (
+                <TextField {...params} variant="standard" label="Cor" />
+              )}
+              fullWidth
+            />
+            <Autocomplete
+              disabled={editavel}
+              id="estampa"
+              options={normalize(estampas)}
+              renderInput={(params) => (
+                <TextField {...params} variant="standard" label="Estampa" />
+              )}
+              fullWidth
+            />
+            <Autocomplete
+              disabled={editavel}
+              id="bordado"
+              options={normalize(bordados)}
+              renderInput={(params) => (
+                <TextField {...params} variant="standard" label="Bordado" />
+              )}
+              fullWidth
+            />
+            <Autocomplete
+              disabled={editavel}
+              id="variavel"
+              options={normalize(variaveis)}
+              renderInput={(params) => (
+                <TextField {...params} variant="standard" label="Variavel" />
+              )}
+              multiple
               fullWidth
             />
           </div>
