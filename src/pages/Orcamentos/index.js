@@ -262,7 +262,6 @@ const Orcamento = () => {
               onChange={(evento) => {
                 setNrOrcamento(evento.target.value);
               }}
-              sx={{ m: 2 }}
               id="nrOrcamento"
               label="N° Orçamento"
               type="nrOrcamento"
