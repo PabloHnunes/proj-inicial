@@ -20,7 +20,7 @@ function DadosUsuario({onSubmit}) {
             if(possoEnviar()){
                 onSubmit({email,senha});
             }
-        }}>s
+        }}>
             <TextField
             value={email}
             onChange={(evento) =>{

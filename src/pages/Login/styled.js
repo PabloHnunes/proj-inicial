@@ -1,11 +1,48 @@
 import styled from "styled-components";
 
+export const AreaLateral = styled.div`
+    /* Container takes full size */
+    height: 100%;
+    right: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+
+    z-index: 9999;
+
+  .container__overlay {
+    /* Take full size */
+    height: 100%;
+    right: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+
+    /* User still can see the content of main page */
+    background-color: rgba(0, 0, 0, 0.5);
+
+    z-index: -1;
+  }
+
+  .container__sidebar {
+    /* Take full height */
+    height: 100%;
+    right: 0;
+    position: fixed;
+    top: 0;
+    width: 500px;
+
+    /* Background */
+    background-color: #fff;
+  }
+  `;
+
 export const AreaLogin = styled.div`
     background-color: #fff;
     padding: 30px;
-    max-width: 300px;
+    max-width: 400px;
     margin: auto;
-    margin-top: 20px;
+    margin-top: 200px;
     text-align: center;
     border-radius: 5px;
     box-shadow: 0px 0px 10px #ccc;

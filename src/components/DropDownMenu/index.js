@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
-import { ReactComponent as TikTok } from '../../assets/icons/tiktok.svg';
-import { ReactComponent as XBox } from '../../assets/icons/x-box.svg';
+import { ReactComponent as Forms } from '../../assets/icons/form.svg';
 import { ReactComponent as Gear } from '../../assets/icons/gear-1.svg';
 import { ReactComponent as Arrow1 } from '../../assets/icons/arrow-1.svg';
 import { ReactComponent as Arrow2 } from '../../assets/icons/arrow-2.svg';
@@ -26,7 +25,7 @@ function DropDrownMenu(){
 
     function DropDrownItem( props ){
         return(
-            <AreaDropItem href="#" onClick={() => props.goToMenu && setAtivo(props.goToMenu)}>
+            <AreaDropItem href="/orcamento-produtos" onClick={() => props.goToMenu && setAtivo(props.goToMenu)}>
                 <AreaIconL>{props.leftIcon}</AreaIconL>
                     {props.children}
                 <AreaIconR>{props.rightIcon}</AreaIconR>
@@ -72,48 +71,10 @@ function DropDrownMenu(){
                     goToMenu="main"/>
 
                     <DropDrownItem 
-                    leftIcon={<TikTok />} 
+                    leftIcon={<Forms />} 
                     href="#">
-                        TikTok
+                        Forms
                     </DropDrownItem>
-
-                    <DropDrownItem 
-                    leftIcon={<XBox />}
-                    href="#"
-                    >
-                        X-Box
-                    </DropDrownItem>
-                    <DropDrownItem 
-                    leftIcon={<XBox />}
-                    href="#"
-                    >
-                        X-Box
-                    </DropDrownItem>
-                    <DropDrownItem 
-                    leftIcon={<XBox />}
-                    href="#"
-                    >
-                        X-Box
-                    </DropDrownItem>
-                    <DropDrownItem 
-                    leftIcon={<XBox />}
-                    href="#"
-                    >
-                        X-Box
-                    </DropDrownItem>
-                    <DropDrownItem 
-                    leftIcon={<XBox />}
-                    href="#"
-                    >
-                        X-Box
-                    </DropDrownItem>
-                    <DropDrownItem 
-                    leftIcon={<XBox />}
-                    href="#"
-                    >
-                        X-Box
-                    </DropDrownItem>
-                    
                 </AreaMenu>
             </CSSTransition>
         </AreaDropMenu>

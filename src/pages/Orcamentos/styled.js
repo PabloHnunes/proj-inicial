@@ -1,13 +1,14 @@
 import styled from "styled-components";
 
 export const ContainerTabs = styled.div`
-    background-color: #fff;
-    padding: 30px;
-    max-width: 800px;
-    border-radius: 5px;
-    box-shadow: 10px 2px 10px #ccc;
-    height: auto;
+  background-color: #fff;
+  padding: 30px;
+  max-width: 800px;
+  border-radius: 5px;
+  box-shadow: 10px 2px 10px #ccc;
+  height: auto;
 `;
+
 
 export const ContainerOrcamento = styled.div`
   display: flex;
@@ -15,8 +16,8 @@ export const ContainerOrcamento = styled.div`
   height: 850px;
   width: auto;
 
-  .tabs-label{
-    color: #F0F8FF;
+  .tabs-label {
+    color: #f0f8ff;
     order: 1;
     display: flex;
     justify-content: center;
@@ -24,14 +25,14 @@ export const ContainerOrcamento = styled.div`
     padding: 1rem 2rem;
     margin-right: 0.2rem;
     cursor: pointer;
-    background-color: #B0C4DE;
+    background-color: #b0c4de;
     font-weight: bold;
     transition: background ease 0.3s;
     border-radius: 15px 15px 0 0;
   }
 
   input[type="radio"]:checked + .tabs-label {
-    background: #FFF5EE;
+    background: #fff5ee;
     color: #343436;
   }
   input[type="radio"]:checked + .tabs-label + .tab {
@@ -49,7 +50,7 @@ export const ContainerOrcamento = styled.div`
     height: 100%;
     display: none;
     padding: 1rem;
-    background: #FFF5EE;
+    background: #fff5ee;
     padding: 20px;
   }
   @media (max-width: 465px) {
