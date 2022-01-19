@@ -294,7 +294,7 @@ const Orcamento = () => {
             exclusive
             onChange={handleChangeOpcoes}
           >
-            <ToggleButton value="Novo">Novo Pedido</ToggleButton>
+            <ToggleButton value="Novo" onClick={gerarNrOrdem}>Novo Pedido</ToggleButton>
             <ToggleButton value="Buscar">Buscar Pedido</ToggleButton>
           </ToggleButtonGroup>
             <Autocomplete

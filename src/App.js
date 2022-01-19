@@ -39,12 +39,12 @@ function App() {
   return(
     <BrowserRouter>
       <GlobalStyle />
-      {/* <Header /> */}
       <NavBar>
         <NavItens icon={<Buger />} >
           <DropDrownMenu/>
         </NavItens>
       </NavBar>
+      <Header/>
       <Routes/>
       <Footer />
     </BrowserRouter>
