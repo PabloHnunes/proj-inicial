@@ -2,21 +2,19 @@ import styled from "styled-components";
 
 export const AreaHeader = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: center;
+  //align-items: center;
   min-height: 100vh;
-  background: #2d2d2d;
+  top: 0;
+  left:0;
 
   .navigation {
     position: relative;
-    height: 500px;
+    height: 100%;
     background: #424242;
     width: 70px;
-    box-shadow: 10px 0 0 #099c22;
-    border-left: 10px solid #424242;
     overflow-x: hidden;
     transition: 0.5s;
-
+    padding: 0;
     :hover {
       width: 300px;
     }
@@ -34,15 +32,16 @@ export const AreaLista = styled.ul`
   top: 0;
   left: 0;
   width: 100%;
-  padding-left: 5px;
-  padding-top: 40px;
+  height: 100%;
+  //padding-left: 5px;
+  //padding-top: 40px;
 
   .lista {
     position: relative;
     list-style: none;
     width: 100%;
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
+    /* border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px; */
 
     .link {
       position: relative;
@@ -50,6 +49,8 @@ export const AreaLista = styled.ul`
       width: 100%;
       text-decoration: none;
       color: #fff;
+      margin: 0%;
+      flex-direction: row;
       .icon {
         position: relative;
         display: block;
@@ -63,6 +64,7 @@ export const AreaLista = styled.ul`
           position: relative;
           font-size: 1.5rem;
           z-index: 1;
+          margin-left: 25px;
         }
       }
       .title {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/img/logo-js.png";
 import { ReactComponent as Gear } from "../../assets/icons/settings.svg";
@@ -19,9 +19,9 @@ function Header() {
     <>
       <AreaHeader>
         <div className="container">
-          <div className="logo">
+          {/* <div className="logo">
             <img src={Logo}></img>
-          </div>
+          </div> */}
           <div className="navigation">
             <Lista lista={itens} />
           </div>
