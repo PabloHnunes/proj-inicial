@@ -37,7 +37,7 @@ export const AreaLista = styled.ul`
   padding-left: 5px;
   padding-top: 40px;
 
-  li {
+  .lista {
     position: relative;
     list-style: none;
     width: 100%;
@@ -76,18 +76,18 @@ export const AreaLista = styled.ul`
       }
     }
   }
-  li:hover{
-    background: #099c22;
-    a::before {
+  .lista:hover{
+    background: #7C7C7C;
+    /* a::before {
       content: "";
       position: absolute;
       top: -30px;
       right: 0;
       width: 30px;
       height: 30px;
-      background: #424242;
+      opacity : 1;
       border-radius: 50%;
-      box-shadow: 15px 15px 0 #099c22;
+      box-shadow: 15px 15px 0 #7C7C7C;
     }
     a::after {
       content: "";
@@ -96,12 +96,12 @@ export const AreaLista = styled.ul`
       right: 0;
       width: 30px;
       height: 30px;
-      background: #424242;
+      opacity : 1;
       border-radius: 50%;
-      box-shadow: 15px -15px 0 #099c22;
-    }
+      box-shadow: 15px -15px 0 #7C7C7C;
+    } */
   }
-  li.active {
+  #active {
     background: #099c22;
     a::before {
       content: "";
@@ -110,9 +110,9 @@ export const AreaLista = styled.ul`
       right: 0;
       width: 30px;
       height: 30px;
-      background: #424242;
+      //background: #424242;
       border-radius: 50%;
-      box-shadow: 15px 15px 0 #099c22;
+      //box-shadow: 15px 15px 0 #099c22;
     }
     a::after {
       content: "";
@@ -123,7 +123,7 @@ export const AreaLista = styled.ul`
       height: 30px;
       background: #424242;
       border-radius: 50%;
-      box-shadow: 15px -15px 0 #099c22;
+      //box-shadow: 15px -15px 0 #099c22;
     }
   }
 `;

@@ -1,59 +1,56 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import Logo from "../../assets/img/logo-js.png";
-import { ReactComponent as Gear } from '../../assets/icons/settings.svg';
-import { ReactComponent as Home } from '../../assets/icons/home.svg';
-import { ReactComponent as Users } from '../../assets/icons/users.svg';
+import { ReactComponent as Gear } from "../../assets/icons/settings.svg";
+import { ReactComponent as Home } from "../../assets/icons/home.svg";
+import { ReactComponent as Users } from "../../assets/icons/users.svg";
 
-import { AreaHeader, AreaLista } from './styled'
+import { AreaHeader, AreaLista } from "./styled";
 
-const lista = ['Home','Usuários','Configurações'];
+const itens = [
+  { check: false, nome: "Home", icone: <Home className="icone" />, link: "/home"},
+  { check: false, nome: "Usuários", icone: <Users className="icone" />, link: "/users" },
+  { check: false, nome: "Configurações", icone: <Gear className="icone" />, link: "/config" },
+];
 
-function Header(){
-    const [ select, setActive] = useState('list');
-    return(
-        <>
-           <AreaHeader>
-               <div className="container">
-                    <div className="logo">
-                        <img src={Logo}></img>
-                    </div>
-                    <div className='navigation'>
-                        <AreaLista>
-                            {/* <li className={select} name='home'>
-                                <Link className='link' to="#">
-                                    <span className="icon"><Home className='icone'  /></span>
-                                    <span className="title">Home</span>
-                                </Link>
-                            </li>
-                            <li className={select} name='user'>
-                                <Link className='link' to="#">
-                                    <span className="icon"><Users className='icone'  /></span>
-                                    <span className="title">Usuários</span>
-                                </Link>
-                            </li>
-                            <li className={select} name='config' onClick={handleChangeActive}>
-                                <Link className='link' to="#">
-                                    <span className="icon"><Gear className='icone' /></span>
-                                    <span className="title">Configuração</span>
-                                </Link>
-                            </li> */}
-                            {lista.map((titulo,index) => {
-                                return(
-                                    <li className={select} key={index}>
-                                        <Link className='link' to="#">
-                                            <span className="icon"><Gear className='icone' /></span>
-                                            <span className="title">{titulo}</span>
-                                        </Link>
-                                    </li>
-                                );
-                            })}
-                        </AreaLista>
-                    </div>
-               </div>
-           </AreaHeader>
-        </>
-    );
+
+function Header() {
+  return (
+    <>
+      <AreaHeader>
+        <div className="container">
+          <div className="logo">
+            <img src={Logo}></img>
+          </div>
+          <div className="navigation">
+            <Lista lista={itens} />
+          </div>
+        </div>
+      </AreaHeader>
+    </>
+  );
+}
+
+function Lista({lista}) {
+  return (
+    <>
+      <AreaLista>
+        {lista.map((lista, index) => {
+          return (
+            <li className="lista" id={window.location.pathname == lista.link ? "active" : ""} onClick={() => {
+                window.location.pathname = lista.link
+                console.log(window.location.pathname);
+                }} key={index}>
+              <Link className="link" to={lista.link}>
+                <span className="icon">{lista.icone}</span>
+                <span className="title">{lista.nome}</span>
+              </Link>
+            </li>
+          );
+        })}
+      </AreaLista>
+    </>
+  );
 }
 
 export default Header;
