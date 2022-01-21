@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const AreaNav = styled.nav`
+  display: flex;
   height: var(--nav-size);
   background-image: linear-gradient(to right, #9fcaec, #1d4064);
   padding: 0 1rem;

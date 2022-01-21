@@ -4,27 +4,30 @@ import Logo from "../../assets/img/logo-js.png";
 import { ReactComponent as Gear } from "../../assets/icons/settings.svg";
 import { ReactComponent as Home } from "../../assets/icons/home.svg";
 import { ReactComponent as Users } from "../../assets/icons/users.svg";
+import { ReactComponent as Form } from "../../assets/icons/form.svg";
 
 import { AreaHeader, AreaLista } from "./styled";
+import { ChildFriendly, PinDropSharp } from "@material-ui/icons";
+import { Children } from "react";
+import Routes from '../../Routers';
 
 const itens = [
-  { check: false, nome: "Home", icone: <Home className="icone" />, link: "/home"},
+  { check: false, nome: "Home", icone: <Home className="icone" />, link: "/"},
   { check: false, nome: "Usuários", icone: <Users className="icone" />, link: "/users" },
   { check: false, nome: "Configurações", icone: <Gear className="icone" />, link: "/config" },
+  { check: false, nome: "Painel de Orçamento", icone: <Form className="icone"/>, link: "/orcamento-produtos"}
 ];
 
 
-function Header() {
+function SideBar() {
   return (
     <>
       <AreaHeader>
-        <div className="container">
-          {/* <div className="logo">
-            <img src={Logo}></img>
-          </div> */}
-          <div className="navigation">
+        <div className="navigation">
             <Lista lista={itens} />
-          </div>
+        </div>
+        <div>
+          <Routes/>
         </div>
       </AreaHeader>
     </>
@@ -37,7 +40,7 @@ function Lista({lista}) {
       <AreaLista>
         {lista.map((lista, index) => {
           return (
-            <li className="lista" id={window.location.pathname == lista.link ? "active" : ""} onClick={() => {
+            <li className="lista" id={window.location.pathname === lista.link ? "active" : ""} onClick={() => {
                 window.location.pathname = lista.link
                 console.log(window.location.pathname);
                 }} key={index}>
@@ -53,4 +56,4 @@ function Lista({lista}) {
   );
 }
 
-export default Header;
+export default SideBar;

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
-import Header from './Components/Header';
+import SideBar from './Components/SideBar';
 import Footer from './Components/Footer';
 import NavBar from './Components/NavBar';
 import NavItens from './Components/NavItens';
@@ -44,8 +44,7 @@ function App() {
           <DropDrownMenu/>
         </NavItens>
       </NavBar>
-      <Header/>
-      <Routes/>
+      <SideBar/>
       <Footer />
     </BrowserRouter>
   );

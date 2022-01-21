@@ -2,14 +2,15 @@ import styled from "styled-components";
 
 export const AreaHeader = styled.div`
   display: flex;
-  //align-items: center;
   min-height: 100vh;
   top: 0;
   left:0;
 
   .navigation {
-    position: relative;
-    height: 100%;
+    //position: absolute;
+    min-height: 100vh;
+    display: flex;
+    height: auto;
     background: #424242;
     width: 70px;
     overflow-x: hidden;
@@ -28,7 +29,8 @@ export const AreaHeader = styled.div`
 `;
 
 export const AreaLista = styled.ul`
-  position: absolute;
+  //position: absolute;
+  min-height: 100vh;
   top: 0;
   left: 0;
   width: 100%;
@@ -80,32 +82,10 @@ export const AreaLista = styled.ul`
   }
   .lista:hover{
     background: #7C7C7C;
-    /* a::before {
-      content: "";
-      position: absolute;
-      top: -30px;
-      right: 0;
-      width: 30px;
-      height: 30px;
-      opacity : 1;
-      border-radius: 50%;
-      box-shadow: 15px 15px 0 #7C7C7C;
-    }
-    a::after {
-      content: "";
-      position: absolute;
-      bottom: -30px;
-      right: 0;
-      width: 30px;
-      height: 30px;
-      opacity : 1;
-      border-radius: 50%;
-      box-shadow: 15px -15px 0 #7C7C7C;
-    } */
   }
   #active {
     background: #099c22;
-    a::before {
+    /* a::before {
       content: "";
       position: absolute;
       top: -30px;
@@ -114,7 +94,7 @@ export const AreaLista = styled.ul`
       height: 30px;
       //background: #424242;
       border-radius: 50%;
-      //box-shadow: 15px 15px 0 #099c22;
+      box-shadow: 15px 15px 0 #099c22;
     }
     a::after {
       content: "";
@@ -126,6 +106,6 @@ export const AreaLista = styled.ul`
       background: #424242;
       border-radius: 50%;
       //box-shadow: 15px -15px 0 #099c22;
-    }
+    } */
   }
 `;
