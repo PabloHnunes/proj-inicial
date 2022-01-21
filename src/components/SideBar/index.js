@@ -1,14 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Logo from "../../assets/img/logo-js.png";
 import { ReactComponent as Gear } from "../../assets/icons/settings.svg";
 import { ReactComponent as Home } from "../../assets/icons/home.svg";
 import { ReactComponent as Users } from "../../assets/icons/users.svg";
-import { ReactComponent as Form } from "../../assets/icons/form.svg";
+import { ReactComponent as Form } from "../../assets/icons/folder.svg";
 
 import { AreaHeader, AreaLista } from "./styled";
-import { ChildFriendly, PinDropSharp } from "@material-ui/icons";
-import { Children } from "react";
 import Routes from '../../Routers';
 
 const itens = [

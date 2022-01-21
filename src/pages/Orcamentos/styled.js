@@ -4,7 +4,6 @@ export const ContainerTabs = styled.div`
   background-color: #fff;
   padding: 30px;
   max-width: 800px;
-  border-radius: 5px;
   box-shadow: 10px 2px 10px #ccc;
   height: auto;
 `;
@@ -14,6 +13,7 @@ export const ContainerOrcamento = styled.div`
   display: flex;
   flex-wrap: wrap;
   height: 850px;
+  min-width:750px;
   width: auto;
 
   .tabs-label {

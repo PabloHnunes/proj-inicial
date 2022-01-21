@@ -7,11 +7,11 @@ export const AreaHeader = styled.div`
   left:0;
 
   .navigation {
-    //position: absolute;
     min-height: 100vh;
     display: flex;
     height: auto;
-    background: #424242;
+    //background-image: linear-gradient(to bottom, #9fcaec, #1d4064);
+    background: var(--bg);
     width: 70px;
     overflow-x: hidden;
     transition: 0.5s;
@@ -29,21 +29,16 @@ export const AreaHeader = styled.div`
 `;
 
 export const AreaLista = styled.ul`
-  //position: absolute;
   min-height: 100vh;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  //padding-left: 5px;
-  //padding-top: 40px;
 
   .lista {
     position: relative;
     list-style: none;
     width: 100%;
-    /* border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px; */
 
     .link {
       position: relative;
@@ -81,31 +76,22 @@ export const AreaLista = styled.ul`
     }
   }
   .lista:hover{
-    background: #7C7C7C;
+    background-color: var(--color-itens-bg);
+    filter: brightness(1.2);
+    .title{
+      color: #000000;
+    }
+    .icone{
+      filter: invert(100%);
+    }
   }
   #active {
-    background: #099c22;
-    /* a::before {
-      content: "";
-      position: absolute;
-      top: -30px;
-      right: 0;
-      width: 30px;
-      height: 30px;
-      //background: #424242;
-      border-radius: 50%;
-      box-shadow: 15px 15px 0 #099c22;
+    background: var(--color-itens-bg);  
+    .title{
+      color: #000000;
     }
-    a::after {
-      content: "";
-      position: absolute;
-      bottom: -30px;
-      right: 0;
-      width: 30px;
-      height: 30px;
-      background: #424242;
-      border-radius: 50%;
-      //box-shadow: 15px -15px 0 #099c22;
-    } */
+    .icone{
+      filter: invert(100%);
+    } 
   }
 `;
