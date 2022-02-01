@@ -53,7 +53,7 @@ export const AreaLista = styled.ul`
         display: block;
         min-width: 60px;
         height: 60px;
-        text-aling: center;
+        text-align: center;
         line-height: 70px;
         .icone {
           width: 20px;
