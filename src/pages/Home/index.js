@@ -1,13 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { ContrainerPage, TitlePage } from "../../Components/Main";
-import { AreaCard } from "./styled";
+import { AreaCard, AreaChars, ContainerHome } from "./styled";
 import { ReactComponent as Gear } from "../../assets/icons/settings.svg";
 import { ReactComponent as Carrinho } from "../../assets/icons/carrinho-3.svg";
 import { ReactComponent as Users } from "../../assets/icons/users.svg";
 import { ReactComponent as Form } from "../../assets/icons/folder.svg";
 import { ReactComponent as Api } from "../../assets/icons/api_white.svg";
 import { ReactComponent as Produto } from "../../assets/icons/feed_white.svg";
+import grafico1 from '../../assets/img/grafico-de-colunas-mais-bolsas.jpg';
+import grafico2 from '../../assets/img/tipos-de-graficos-matematica.jpg';
+import grafico3 from '../../assets/img/tipos-graficos-barras-matematica.jpg';
 
 const itens = [
   {
@@ -44,10 +47,18 @@ const itens = [
 
 const Page = () => {
   return (
-    <ContrainerPage>
-      <TitlePage>Seja Bem Vindo!</TitlePage>
+    <ContainerHome>
       <Cards lista={itens} />
-    </ContrainerPage>
+      <AreaChars>
+        <h2>Gráficos</h2>
+        <div className="div-grafico">
+          <img src={grafico1} />
+          <img src={grafico2} />
+          <img src={grafico3} />
+
+        </div>
+      </AreaChars>
+    </ContainerHome>
   );
 };
 
@@ -60,7 +71,9 @@ function Cards({ lista }) {
             <li className="card" key={index}>
               <Link className="link" to={lista.link}>
                 <span className="icon">{lista.icone}</span>
-                <span className="title">{lista.nome}</span>
+                <div className="title-div">
+                  <span className="title">{lista.nome}</span>
+                </div>
               </Link>
             </li>
           );

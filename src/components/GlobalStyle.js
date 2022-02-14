@@ -13,6 +13,7 @@ export const GlobalStyle = createGlobalStyle`
 :root{
     --color-itens-bg: #9FCAEC;
     --bg: #1D4064;
+    --back-dash: #E0E0E0;
     --bg-accent: #9FCAEC;
     --text-color: #F0F8FF;
     --nav-size: 60px;

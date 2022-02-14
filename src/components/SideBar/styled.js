@@ -11,8 +11,8 @@ export const AreaHeader = styled.div`
     display: flex;
     height: auto;
     //background-image: linear-gradient(to bottom, #9fcaec, #1d4064);
-    background: var(--bg);
-    width: 70px;
+    background: var(#eeeeee);
+    width: 60px;
     overflow-x: hidden;
     transition: 0.5s;
     padding: 0;
@@ -25,6 +25,7 @@ export const AreaHeader = styled.div`
     img {
       width: 50px;
     }
+    
   }
 `;
 
@@ -56,12 +57,12 @@ export const AreaLista = styled.ul`
         text-align: center;
         line-height: 70px;
         .icone {
-          width: 20px;
-          height: 20px;
+          width: 25px;
+          height: 25px;
           position: relative;
           font-size: 1.5rem;
           z-index: 1;
-          margin-left: 25px;
+          fill: #606060;
         }
       }
       .title {
@@ -71,27 +72,26 @@ export const AreaLista = styled.ul`
         height: 60px;
         line-height: 60px;
         white-space: nowrap;
-        color: #fff;
+        color: #000000;
       }
     }
   }
   .lista:hover{
-    background-color: var(--color-itens-bg);
-    filter: brightness(1.2);
+    filter: brightness(0.5);
     .title{
       color: #000000;
     }
     .icone{
-      filter: invert(100%);
+      fill:#003366;
     }
   }
   #active {
-    background: var(--color-itens-bg);  
+
     .title{
       color: #000000;
     }
     .icone{
-      filter: invert(100%);
+      fill:#003366;
     } 
   }
 `;

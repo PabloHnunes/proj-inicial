@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { ReactComponent as Gear } from "../../assets/icons/settings.svg";
-import { ReactComponent as Home } from "../../assets/icons/home.svg";
+import { ReactComponent as Gear } from "../../assets/icons/settings_white.svg";
+import { ReactComponent as Home } from "../../assets/icons/home_white.svg";
 import { ReactComponent as Users } from "../../assets/icons/users.svg";
 import { ReactComponent as Form } from "../../assets/icons/folder.svg";
 
@@ -23,7 +23,7 @@ function SideBar() {
         <div className="navigation">
             <Lista lista={itens} />
         </div>
-        <div>
+        <div className="dashboard">
           <Routes/>
         </div>
       </AreaHeader>
@@ -42,7 +42,7 @@ function Lista({lista}) {
                 console.log(window.location.pathname);
                 }} key={index}>
               <Link className="link" to={lista.link}>
-                <span className="icon">{lista.icone}</span>
+                <span className="icon" >{lista.icone}</span>
                 <span className="title">{lista.nome}</span>
               </Link>
             </li>

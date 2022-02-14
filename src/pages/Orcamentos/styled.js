@@ -1,9 +1,12 @@
 import styled from "styled-components";
 
 export const ContainerTabs = styled.div`
-  background-color: #fff;
+  background-color: #EEEEEE;
   padding: 30px;
   max-width: 800px;
+  //border-radius: 10px;
+  border-end-end-radius: 10px;
+  border-start-end-radius: 10px;
   box-shadow: 10px 2px 10px #ccc;
   height: auto;
 `;
