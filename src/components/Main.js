@@ -6,4 +6,6 @@ export const ContrainerPage = styled.div`
 
 export const TitlePage = styled.h1`
     font-size: 20px;
+    padding: 18px;
+    //padding-top: 10px;
 `;

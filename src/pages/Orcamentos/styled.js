@@ -2,7 +2,10 @@ import styled from "styled-components";
 
 export const ContainerTabs = styled.div`
   background-color: #EEEEEE;
-  padding: 30px;
+  //padding: 30px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 30px;
   max-width: 800px;
   //border-radius: 10px;
   border-end-end-radius: 10px;

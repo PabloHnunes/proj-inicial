@@ -19,7 +19,7 @@ const itens = [
     link: "/orcamento-produtos",
   },
   {
-    nome: "Cadastro de Cliente",
+    nome: "Cadastro de Clientes",
     icone: <Users className="icone" />,
     link: "/cadastro-cliente",
   },

@@ -4,15 +4,18 @@ import { ReactComponent as Gear } from "../../assets/icons/settings_white.svg";
 import { ReactComponent as Home } from "../../assets/icons/home_white.svg";
 import { ReactComponent as Users } from "../../assets/icons/users.svg";
 import { ReactComponent as Form } from "../../assets/icons/folder.svg";
+import { ReactComponent as LampadaOff } from "../../assets/icons/lampada_off.svg";
+import { ReactComponent as LampadaOn } from "../../assets/icons/lampada_on.svg";
 
 import { AreaHeader, AreaLista } from "./styled";
 import Routes from '../../Routers';
 
 const itens = [
   { check: false, nome: "Home", icone: <Home className="icone" />, link: "/"},
-  { check: false, nome: "Usuários", icone: <Users className="icone" />, link: "/users" },
+  { check: false, nome: "Cadastro de Clientes", icone: <Users className="icone" />, link: "/cadastro-cliente" },
   { check: false, nome: "Configurações", icone: <Gear className="icone" />, link: "/config" },
-  { check: false, nome: "Painel de Orçamento", icone: <Form className="icone"/>, link: "/orcamento-produtos"}
+  { check: false, nome: "Painel de Orçamento", icone: <Form className="icone"/>, link: "/orcamento-produtos"},
+  { check: false, nome: "Sugestões", icone: window.location.pathname === '/ideias-clientes' ? <LampadaOn className="icone"/> : <LampadaOff className="icone"/> , link:"/ideias-clientes"}
 ];
 
 

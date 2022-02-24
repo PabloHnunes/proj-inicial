@@ -92,6 +92,7 @@ export const AreaLista = styled.ul`
     }
     .icone{
       fill:#003366;
+      filter: brightness(1.5);
     } 
   }
 `;
