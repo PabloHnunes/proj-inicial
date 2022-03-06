@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const ContainerTabs = styled.div`
-  background-color: #EEEEEE;
+  background-color: #eeeeee;
   //padding: 30px;
   padding-left: 30px;
   padding-right: 30px;
@@ -14,16 +14,15 @@ export const ContainerTabs = styled.div`
   height: auto;
 `;
 
-
 export const ContainerOrcamento = styled.div`
   display: flex;
   flex-wrap: wrap;
   height: 850px;
-  min-width:750px;
+  min-width: 750px;
   width: auto;
 
   .tabs-label {
-    color: #696A6B;
+    color: #696a6b;
     order: 1;
     display: flex;
     justify-content: center;
@@ -31,7 +30,7 @@ export const ContainerOrcamento = styled.div`
     padding: 1rem 2rem;
     margin-right: 0.2rem;
     cursor: pointer;
-    background-color: #C1D3E2;
+    background-color: #c1d3e2;
     font-weight: bold;
     transition: background ease 0.3s;
     border-radius: 15px 15px 0 0;
@@ -70,4 +69,16 @@ export const ContainerOrcamento = styled.div`
       margin-left: 50px;
     }
   }
+  .form-date__datepicker {
+    padding: 15px;
+    font-size: 16px;
+    border: none;
+    border-bottom: 1px solid black ;
+    font-family: "Roboto", sans-serif;
+    background-color: #f0f8ff ;
+  }
+`;
+
+export const LabelDate = styled.h1`
+  font-size: 16px;
 `;

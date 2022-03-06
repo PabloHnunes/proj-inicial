@@ -2,20 +2,22 @@ import React, { useState } from "react";
 import {
   Autocomplete,
   TextField,
-  useTheme,
   Grid,
   InputAdornment,
-  OutlinedInput,
-  Fab,
   Button,
   ToggleButtonGroup,
   ToggleButton,
 } from "@material-ui/core";
-import { DatePickerComponent } from "@syncfusion/ej2-react-calendars";
 import { ReactComponent as Plus } from "../../assets/icons/plus.svg";
 import { ReactComponent as Carrinho } from "../../assets/icons/carrinho.svg";
 import { ContainerOrcamento, ContainerTabs } from "./styled";
 import { TitlePage } from "../../Components/Main";
+import "react-datepicker/dist/react-datepicker.css";
+import DateAdapter from "@mui/lab/AdapterDateFns";
+import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
+import LocalizationProvider from "@mui/lab/LocalizationProvider";
+import ptBR from "date-fns/locale/pt-BR";
+import pt from "date-fns/esm/locale/pt/index.js";
 
 const produtos = [
   {
@@ -215,7 +217,6 @@ const normalizeTransportadora = (t) => {
 };
 
 const Orcamento = () => {
-  const theme = useTheme();
   const [ativo, setAtivo] = useState("main");
   const [nrOrcamento, setNrOrcamento] = useState(null);
   const [transportadora, setTransportadora] = useState(null);
@@ -228,14 +229,8 @@ const Orcamento = () => {
   const [status, setStatus] = useState(null);
   const [valorPedido, setValorPedido] = useState(0);
   const [desabilitado, setDessabilitado] = useState(true);
-  const [opcoesPedido, setOpcoesPedido] = useState('Novo');
+  const [opcoesPedido, setOpcoesPedido] = useState("Novo");
 
-  const handleChangeDataEmissao = (e) => {
-    setDataEmissao(e.target.value);
-  };
-  const handleChangeDataEntrega = (e) => {
-    setDataEntrega(e.target.value);
-  };
   const handleChangeDesconto = (e) => {
     setDesconto(e.target.value);
   };
@@ -245,20 +240,20 @@ const Orcamento = () => {
     setDessabilitado(false);
   };
 
-  const resetForms = () =>{
+  const resetForms = () => {
     setNrOrcamento(null);
     setStatus(null);
     setDessabilitado(true);
-  }
+  };
 
   const defaultProps = {
     options: transportadoras,
     getOptionsLabel: (options) => options.title,
   };
   const handleChangeOpcoes = (e, opcao) => {
-    if(opcao === "Novo"){
+    if (opcao === "Novo") {
       gerarNrOrdem();
-    }else{
+    } else {
       resetForms();
     }
     setOpcoesPedido(opcao);
@@ -289,14 +284,16 @@ const Orcamento = () => {
               required
             />
             <ToggleButtonGroup
-            color="primary"
-            value={opcoesPedido}
-            exclusive
-            onChange={handleChangeOpcoes}
-          >
-            <ToggleButton value="Novo" onClick={gerarNrOrdem}>Novo Pedido</ToggleButton>
-            <ToggleButton value="Buscar">Buscar Pedido</ToggleButton>
-          </ToggleButtonGroup>
+              color="primary"
+              value={opcoesPedido}
+              exclusive
+              onChange={handleChangeOpcoes}
+            >
+              <ToggleButton value="Novo" onClick={gerarNrOrdem}>
+                Novo Pedido
+              </ToggleButton>
+              <ToggleButton value="Buscar">Buscar Pedido</ToggleButton>
+            </ToggleButtonGroup>
             <Autocomplete
               disabled={desabilitado}
               id="empresa"
@@ -322,7 +319,7 @@ const Orcamento = () => {
               id="condicao-pagamento"
               value={condicaoPagamento}
               options={normalize(condicoesPag)}
-              onChange={(event, newCond)=>{
+              onChange={(event, newCond) => {
                 setCondicaoPagamento(newCond);
               }}
               sx={{ m: 2 }}
@@ -353,20 +350,35 @@ const Orcamento = () => {
               )}
               fullWidth
             />
-            <DatePickerComponent
-              disabled={desabilitado}
-              placeholder="Data Emissão"
-              value={dataEmissao}
-              //onChange={handleChangeDataEmissao}
-              format="dd/MM/yyyy"
-            />
-            <DatePickerComponent
-              disabled={desabilitado}
-              placeholder="Data Entrega"
-              value={dataEntrega}
-              //onChange={handleChangeDataEntrega}
-              format="dd/MM/yyyy"
-            />
+            <LocalizationProvider dateAdapter={DateAdapter} locale={ptBR}>
+              <DesktopDatePicker
+                disabled={desabilitado}
+                label="Data Emissão"
+                inputFormat="dd/MM/yyyy"
+                value={dataEmissao}
+                sx={{ m: 2 }}
+                onChange={(data) => {
+                  setDataEmissao(data);
+                }}
+                minDate={new Date()}
+                renderInput={(params) => (
+                  <TextField sx={{ m: 2 }} variant="standard" {...params} />
+                )}
+              />
+              <DesktopDatePicker
+                disabled={desabilitado}
+                label="Data Entrega"
+                inputFormat="dd/MM/yyyy"
+                value={dataEntrega}
+                minDate={dataEmissao}
+                onChange={(data) => {
+                  setDataEntrega(data);
+                }}
+                renderInput={(params) => (
+                  <TextField sx={{ m: 2 }} variant="standard" {...params} />
+                )}
+              />
+            </LocalizationProvider>
             <TextField
               disabled={desabilitado}
               variant="standard"
@@ -375,7 +387,12 @@ const Orcamento = () => {
               type="number"
               value={desconto}
               onChange={handleChangeDesconto}
-              sx={{ m: 2 }}
+              sx={{
+                m: 2,
+                width: {
+                  xs: 70, // theme.breakpoints.up('xs')
+                }
+              }}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">%</InputAdornment>

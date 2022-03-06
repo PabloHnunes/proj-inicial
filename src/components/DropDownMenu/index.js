@@ -25,7 +25,7 @@ function DropDrownMenu(){
 
     function DropDrownItem( props ){
         return(
-            <AreaDropItem href="/orcamento-produtos" onClick={() => props.goToMenu && setAtivo(props.goToMenu)}>
+            <AreaDropItem href="#" onClick={() => props.goToMenu && setAtivo(props.goToMenu)}>
                 <AreaIconL>{props.leftIcon}</AreaIconL>
                     {props.children}
                 <AreaIconR>{props.rightIcon}</AreaIconR>
