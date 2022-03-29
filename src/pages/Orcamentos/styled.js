@@ -69,14 +69,6 @@ export const ContainerOrcamento = styled.div`
       margin-left: 50px;
     }
   }
-  .form-date__datepicker {
-    padding: 15px;
-    font-size: 16px;
-    border: none;
-    border-bottom: 1px solid black ;
-    font-family: "Roboto", sans-serif;
-    background-color: #f0f8ff ;
-  }
 `;
 
 export const LabelDate = styled.h1`

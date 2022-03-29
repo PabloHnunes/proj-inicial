@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Autocomplete,
   TextField,
@@ -11,13 +11,13 @@ import {
 import { ReactComponent as Plus } from "../../assets/icons/plus.svg";
 import { ReactComponent as Carrinho } from "../../assets/icons/carrinho.svg";
 import { ContainerOrcamento, ContainerTabs } from "./styled";
-import { TitlePage } from "../../Components/Main";
+import { TitlePage } from "../../components/Main";
 import "react-datepicker/dist/react-datepicker.css";
 import DateAdapter from "@mui/lab/AdapterDateFns";
 import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import ptBR from "date-fns/locale/pt-BR";
-import pt from "date-fns/esm/locale/pt/index.js";
+import ListaProdutos from "../../components/ListaProdutos";
 
 const produtos = [
   {
@@ -218,18 +218,41 @@ const normalizeTransportadora = (t) => {
 
 const Orcamento = () => {
   const [ativo, setAtivo] = useState("main");
+  const [dadosColetados, setDadosColetados] = useState({});
   const [nrOrcamento, setNrOrcamento] = useState(null);
   const [transportadora, setTransportadora] = useState(null);
   const [formaPagamento, setFormaPagamento] = useState(null);
   const [condicaoPagamento, setCondicaoPagamento] = useState(null);
   const [cliente, setCliente] = useState(null);
+  const [empresa, setEmpresa] = useState(null);
   const [dataEmissao, setDataEmissao] = useState(new Date());
   const [dataEntrega, setDataEntrega] = useState(new Date());
   const [desconto, setDesconto] = useState(0);
-  const [status, setStatus] = useState(null);
+  const [status, setStatus] = useState("");
   const [valorPedido, setValorPedido] = useState(0);
-  const [desabilitado, setDessabilitado] = useState(true);
+  const [desabilitado, setDesabilitado] = useState(true);
   const [opcoesPedido, setOpcoesPedido] = useState("Novo");
+  const [observacao, setObservacao] = useState("");
+  const [produto, setProduto] = useState(null);
+  const [tamanho, setTamanho] = useState(null);
+  const [cor, setCor] = useState(null);
+  const [estampa, setEstampa] = useState(null);
+  const [bordado, setBordado] = useState(null);
+  const [variavel, setVariavel] = useState([]);
+  const [itens, setItens] = useState([]);
+  const [itemId, setItemId] = useState(null);
+  const [item, setItem] = useState({
+    id: "",
+    nrOrcamento: "",
+    cliente: "",
+    produto: "",
+    estampa: "",
+    tamanho: "",
+    cor: "",
+    bordado: "",
+    variavel:[],
+  });
+  const [editMode, setEditMode] = useState(false);
 
   const handleChangeDesconto = (e) => {
     setDesconto(e.target.value);
@@ -237,13 +260,13 @@ const Orcamento = () => {
   const gerarNrOrdem = () => {
     setNrOrcamento(Math.floor(Math.random() * 65536));
     setStatus("Novo");
-    setDessabilitado(false);
+    setDesabilitado(false);
   };
 
   const resetForms = () => {
-    setNrOrcamento(null);
-    setStatus(null);
-    setDessabilitado(true);
+    setNrOrcamento("");
+    setStatus("");
+    setDesabilitado(true);
   };
 
   const defaultProps = {
@@ -258,9 +281,120 @@ const Orcamento = () => {
     }
     setOpcoesPedido(opcao);
   };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setDadosColetados({
+      produto: produto.value,
+      transportadora: transportadora.value,
+    });
+    console.log(
+      "Teste de submit :" +
+        dadosColetados.produto +
+        " " +
+        dadosColetados.transportadora
+    );
+  };
+  const addItem = (item) => {
+    if (
+      item.id === null ||
+      item.nrOrcamento === null ||
+      item.cliente === null ||
+      item.produto === null ||
+      item.estampa === null ||
+      item.tamanho === null ||
+      item.cor === null ||
+      item.bordado === null
+    ) {
+      return;
+    }
+
+    const newItens = [item, ...itens];
+    setItens(newItens);
+    setProduto(null);
+    setTamanho(null);
+    setEstampa(null);
+    setCor(null);
+    setBordado(null);
+    setVariavel([]);
+  };
+  const apagarItem = (id) => {
+    const removeItem = [...itens].filter((item) => item.id !== id);
+
+    setItens(removeItem);
+  };
+  const editarItem = (id) => {
+    setEditMode(true);
+    itens.map((produto) => {
+      if(produto.id === id){
+        setItem(produto);
+        setItemId(produto.id);
+        setProduto(produto.produto);
+        setTamanho(produto.tamanho);
+        setCor(produto.cor);
+        setEstampa(produto.estampa);
+        setBordado(produto.bordado);
+        setVariavel(produto.variavel);
+      }
+      return produto;
+    })
+  };
+  const updateItem = (id, newItem) => {
+    if (editMode) {
+      setItem({
+        ...item,
+        nrOrcamento: nrOrcamento,
+        cliente: cliente,
+        produto: produto,
+        estampa: estampa,
+        tamanho: tamanho,
+        cor: cor,
+        bordado: bordado,
+        variavel: variavel
+      });
+      setItens((itens) => itens.map((item) => (item.id === id ? newItem : item)));
+      setItemId(null);
+      setProduto(null);
+      setTamanho(null);
+      setEstampa(null);
+      setCor(null);
+      setBordado(null);
+      setVariavel([]);
+      setEditMode(false);
+    }else{
+      return
+    }
+  };
+  useEffect(() => {
+    if(!editMode){
+      setItem({
+        id: Math.floor(Math.random() * 10000),
+        nrOrcamento: nrOrcamento,
+        cliente: cliente,
+        produto: produto,
+        estampa: estampa,
+        tamanho: tamanho,
+        cor: cor,
+        bordado: bordado,
+        variavel: variavel
+      });
+    }else{
+      setItem({
+        id: itemId,
+        nrOrcamento: nrOrcamento,
+        cliente: cliente,
+        produto: produto,
+        estampa: estampa,
+        tamanho: tamanho,
+        cor: cor,
+        bordado: bordado,
+        variavel: variavel
+      });
+    }
+  }, [itemId,nrOrcamento, cliente, produto, tamanho, cor, bordado,estampa, variavel, editMode]);
+
 
   return (
-    <>
+    <form onSubmit={handleSubmit}>
       <ContainerTabs>
         <TitlePage>Orçamento de produtos</TitlePage>
         <ContainerOrcamento>
@@ -281,6 +415,9 @@ const Orcamento = () => {
               type="nrOrcamento"
               margin="normal"
               variant="standard"
+              InputProps={{
+                startAdornment: <InputAdornment position="start" />,
+              }}
               required
             />
             <ToggleButtonGroup
@@ -297,7 +434,11 @@ const Orcamento = () => {
             <Autocomplete
               disabled={desabilitado}
               id="empresa"
+              value={empresa}
               options={normalize(empresas)}
+              onChange={(_, newEmpresa) => {
+                setEmpresa(newEmpresa);
+              }}
               sx={{ m: 2 }}
               renderInput={(params) => (
                 <TextField {...params} variant="standard" label="Empresa" />
@@ -308,6 +449,10 @@ const Orcamento = () => {
               disabled={desabilitado}
               id="cliente"
               options={names}
+              value={cliente}
+              onChange={(_, newCliente) => {
+                setCliente(newCliente);
+              }}
               sx={{ m: 2 }}
               renderInput={(params) => (
                 <TextField {...params} variant="standard" label="Cliente" />
@@ -319,7 +464,7 @@ const Orcamento = () => {
               id="condicao-pagamento"
               value={condicaoPagamento}
               options={normalize(condicoesPag)}
-              onChange={(event, newCond) => {
+              onChange={(_, newCond) => {
                 setCondicaoPagamento(newCond);
               }}
               sx={{ m: 2 }}
@@ -338,7 +483,7 @@ const Orcamento = () => {
               id="forma-pagamento"
               sx={{ m: 2 }}
               options={normalize(formasPag)}
-              onChange={(event, newForma) => {
+              onChange={(_, newForma) => {
                 setFormaPagamento(newForma);
               }}
               renderInput={(params) => (
@@ -352,7 +497,7 @@ const Orcamento = () => {
             />
             <LocalizationProvider dateAdapter={DateAdapter} locale={ptBR}>
               <DesktopDatePicker
-                disabled={desabilitado}
+                disabled={true}
                 label="Data Emissão"
                 inputFormat="dd/MM/yyyy"
                 value={dataEmissao}
@@ -391,7 +536,7 @@ const Orcamento = () => {
                 m: 2,
                 width: {
                   xs: 70, // theme.breakpoints.up('xs')
-                }
+                },
               }}
               InputProps={{
                 startAdornment: (
@@ -440,6 +585,10 @@ const Orcamento = () => {
               disabled={desabilitado}
               id="observacoes"
               label="Observação"
+              value={observacao}
+              onChange={(_, newObservacao) => {
+                setObservacao(newObservacao);
+              }}
               multiline
               rows={4}
               sx={{ m: 2 }}
@@ -456,7 +605,11 @@ const Orcamento = () => {
           <div className="tab">
             <Autocomplete
               disabled={desabilitado}
-              id="produtos"
+              id="produto"
+              value={produto}
+              onChange={(_, newProduto) => {
+                setProduto(newProduto);
+              }}
               options={normalize(produtos)}
               renderInput={(params) => (
                 <TextField {...params} variant="standard" label="Produtos" />
@@ -465,7 +618,11 @@ const Orcamento = () => {
             />
             <Autocomplete
               disabled={desabilitado}
-              id="tamanhos"
+              id="tamanho"
+              value={tamanho}
+              onChange={(_, newTamanho) => {
+                setTamanho(newTamanho);
+              }}
               options={normalize(tamanhos)}
               renderInput={(params) => (
                 <TextField {...params} variant="standard" label="Tamanho" />
@@ -475,6 +632,10 @@ const Orcamento = () => {
             <Autocomplete
               disabled={desabilitado}
               id="cor"
+              value={cor}
+              onChange={(_, newCor) => {
+                setCor(newCor);
+              }}
               options={normalize(cores)}
               renderInput={(params) => (
                 <TextField {...params} variant="standard" label="Cor" />
@@ -484,6 +645,10 @@ const Orcamento = () => {
             <Autocomplete
               disabled={desabilitado}
               id="estampa"
+              value={estampa}
+              onChange={(_, newEstampa) => {
+                setEstampa(newEstampa);
+              }}
               options={normalize(estampas)}
               renderInput={(params) => (
                 <TextField {...params} variant="standard" label="Estampa" />
@@ -493,6 +658,10 @@ const Orcamento = () => {
             <Autocomplete
               disabled={desabilitado}
               id="bordado"
+              value={bordado}
+              onChange={(_, newBordado) => {
+                setBordado(newBordado);
+              }}
               options={normalize(bordados)}
               renderInput={(params) => (
                 <TextField {...params} variant="standard" label="Bordado" />
@@ -502,12 +671,45 @@ const Orcamento = () => {
             <Autocomplete
               disabled={desabilitado}
               id="variavel"
+              value={variavel}
+              onChange={(_, newVariavel) => {
+                setVariavel(newVariavel);
+              }}
               options={normalize(variaveis)}
               renderInput={(params) => (
                 <TextField {...params} variant="standard" label="Variavel" />
               )}
               multiple
               fullWidth
+            />
+            {editMode ? <Button
+              disabled={desabilitado}
+              sx={{ m: 2 }}
+              variant="contained"
+              color="success"
+              onClick={() => {
+                updateItem(item.id, item);
+              }}
+            >
+              Salvar
+            </Button>
+            :
+            <Button
+              disabled={desabilitado}
+              sx={{ m: 2 }}
+              variant="contained"
+              color="success"
+              onClick={() => {
+                addItem(item);
+              }}
+            >
+              Adicionar +
+            </Button>
+            }
+            <ListaProdutos
+              itens={itens}
+              apagarItem={apagarItem}
+              editarItem={editarItem}
             />
           </div>
         </ContainerOrcamento>
@@ -530,7 +732,7 @@ const Orcamento = () => {
             />
           </Grid>
           <Grid item>
-            <Button variant="contained" color="success">
+            <Button variant="contained" color="success" type="submit">
               Aprovar
             </Button>
           </Grid>
@@ -541,7 +743,7 @@ const Orcamento = () => {
           </Grid>
         </Grid>
       </ContainerTabs>
-    </>
+    </form>
   );
 };
 

@@ -1,18 +1,15 @@
 import React, { useState } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
-import SideBar from './Components/SideBar';
-import Footer from './Components/Footer';
-import NavBar from './Components/NavBar';
-import NavItens from './Components/NavItens';
-import DropDrownMenu from './Components/DropDownMenu';
+import SideBar from './components/SideBar';
+import Footer from './components/Footer';
+import NavBar from './components/NavBar';
+import NavItens from './components/NavItens';
+import DropDrownMenu from './components/DropDownMenu';
 
 import Login from './pages/Login';
 
-import Routes from './Routers';
-
-import { GlobalStyle } from './Components/GlobalStyle';
-import { ReactComponent as Arrow } from './assets/icons/arrow-2.svg';
+import { GlobalStyle } from './components/GlobalStyle';
 import { ReactComponent as Buger } from './assets/icons/hamburger-1.svg';
 import './App.css';
 

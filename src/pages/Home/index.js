@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { ContrainerPage, TitlePage } from "../../Components/Main";
 import { AreaCard, AreaChars, ContainerHome } from "./styled";
 import { ReactComponent as Gear } from "../../assets/icons/settings.svg";
 import { ReactComponent as Carrinho } from "../../assets/icons/carrinho-3.svg";

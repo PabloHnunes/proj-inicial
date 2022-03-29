@@ -8,7 +8,7 @@ import { ReactComponent as LampadaOff } from "../../assets/icons/lampada_off.svg
 import { ReactComponent as LampadaOn } from "../../assets/icons/lampada_on.svg";
 
 import { AreaHeader, AreaLista } from "./styled";
-import Routes from '../../Routers';
+import Routers from '../../Routers';
 
 const itens = [
   { check: false, nome: "Home", icone: <Home className="icone" />, link: "/"},
@@ -27,7 +27,7 @@ function SideBar() {
             <Lista lista={itens} />
         </div>
         <div className="dashboard">
-          <Routes/>
+          <Routers/>
         </div>
       </AreaHeader>
     </>

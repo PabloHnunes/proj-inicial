@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import Home from "./pages/Home";
 import Configuracao from "./pages/Configuracao";
@@ -8,22 +8,46 @@ import Orcamento from "./pages/Orcamentos";
 
 export default () => {
   return (
-    <Switch>
-      <Route exact path="/">
-        <Home />
-      </Route>
+    <Routes>
+      <Route
+        exact
+        path="/"
+        element={
+          <>
+            <Home />
+          </>
+        }
+      />
 
-      <Route exact path="/config">
-        <Configuracao />
-      </Route>
+      <Route
+        exact
+        path="/config"
+        element={
+          <>
+            <Configuracao />
+          </>
+        }
+      />
 
-      <Route exact path="/sobre">
-        <Sobre />
-      </Route>
+      <Route
+        exact
+        path="/sobre"
+        element={
+          <>
+            <Sobre />
+          </>
+        }
+      />
 
-      <Route exact path="/orcamento-produtos">
-        <Orcamento />
-      </Route>
-    </Switch>
+      <Route
+        exact
+        path="/orcamento-produtos"
+        element={
+          <>
+            <Orcamento />
+          </>
+        }
+      />
+    </Routes>
   );
 };

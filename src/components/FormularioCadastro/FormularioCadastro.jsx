@@ -33,7 +33,6 @@ function FormularioCadastro({onSubmit}) {
       <Step><StepLabel>Login</StepLabel></Step>
       <Step><StepLabel>Pessoal</StepLabel></Step>
       <Step><StepLabel>Entrega</StepLabel></Step>
-      {/* <Step><StepLabel>Finalização</StepLabel></Step> */}
       </Stepper>
       {formulario[etapaAtual]}
     </>

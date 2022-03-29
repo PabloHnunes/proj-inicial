@@ -1,4 +1,3 @@
-import { style } from "@material-ui/system";
 import styled from "styled-components";
 
 export const AreaCard = styled.ul`

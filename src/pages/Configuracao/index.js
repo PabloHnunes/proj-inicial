@@ -1,5 +1,5 @@
 import React from 'react';
-import { ContrainerPage, TitlePage } from '../../Components/Main'
+import { ContrainerPage, TitlePage } from '../../components/Main'
 const Page = () => {
     return(
         <ContrainerPage>
