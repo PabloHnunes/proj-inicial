@@ -14,6 +14,10 @@ export const Card = styled.section`
   box-shadow: 0px 5px 15px #9A9A9A;
   padding: 16px;
 
+  &.edit_mode{
+    background-color: #c1d3e2;
+  }
+
   .card-item_options{
     @keyframes bounce {
       0%, 20%, 60%, 100%{
@@ -52,6 +56,7 @@ export const Card = styled.section`
   }
 
   .card-item_texto {
+    color: #424949;
     margin-top: 8px;
     font-size: 1em;
   }

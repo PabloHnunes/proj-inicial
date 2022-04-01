@@ -1,4 +1,3 @@
-import { Button } from "@material-ui/core";
 import React from "react";
 import CardItem from "../CardItem";
 import { AreaItens } from "./styled";
@@ -28,6 +27,7 @@ function ListaProdutos({ itens, apagarItem, editarItem }) {
                   }
                   apagarItem={apagarItem}
                   editarItem={editarItem}
+                  editMode={item.editMode}
                 />
               </li>
             );

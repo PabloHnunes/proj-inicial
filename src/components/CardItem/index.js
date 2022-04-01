@@ -11,13 +11,13 @@ const CardItem = ({
   cor,
   bordado,
   apagarItem,
-  editarItem
+  editarItem,
+  editMode
 }) => {
   return (
-    <Card>
+    <Card className={editMode ? "edit_mode" : ""}>
       <div className="card-item_options">
         <EditSvg className="card-item_icone" onClick={() => {
-          console.log(id);
           editarItem(id);
         }} />
         <DeleteSvg

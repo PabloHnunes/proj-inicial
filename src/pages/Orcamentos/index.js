@@ -250,7 +250,8 @@ const Orcamento = () => {
     tamanho: "",
     cor: "",
     bordado: "",
-    variavel:[],
+    variavel: [],
+    editMode: false
   });
   const [editMode, setEditMode] = useState(false);
 
@@ -324,8 +325,10 @@ const Orcamento = () => {
   };
   const editarItem = (id) => {
     setEditMode(true);
+    itens.map((produto) => {if(produto.editMode === true) produto.editMode = false } );
+
     itens.map((produto) => {
-      if(produto.id === id){
+      if (produto.id === id) {
         setItem(produto);
         setItemId(produto.id);
         setProduto(produto.produto);
@@ -334,9 +337,10 @@ const Orcamento = () => {
         setEstampa(produto.estampa);
         setBordado(produto.bordado);
         setVariavel(produto.variavel);
+        produto.editMode = true;
       }
       return produto;
-    })
+    });
   };
   const updateItem = (id, newItem) => {
     if (editMode) {
@@ -349,9 +353,12 @@ const Orcamento = () => {
         tamanho: tamanho,
         cor: cor,
         bordado: bordado,
-        variavel: variavel
+        variavel: variavel,
+        editMode: false
       });
-      setItens((itens) => itens.map((item) => (item.id === id ? newItem : item)));
+      setItens((itens) =>
+        itens.map((item) => (item.id === id ? newItem : item))
+      );
       setItemId(null);
       setProduto(null);
       setTamanho(null);
@@ -360,12 +367,12 @@ const Orcamento = () => {
       setBordado(null);
       setVariavel([]);
       setEditMode(false);
-    }else{
-      return
+    } else {
+      return;
     }
   };
   useEffect(() => {
-    if(!editMode){
+    if (!editMode) {
       setItem({
         id: Math.floor(Math.random() * 10000),
         nrOrcamento: nrOrcamento,
@@ -375,9 +382,9 @@ const Orcamento = () => {
         tamanho: tamanho,
         cor: cor,
         bordado: bordado,
-        variavel: variavel
+        variavel: variavel,
       });
-    }else{
+    } else {
       setItem({
         id: itemId,
         nrOrcamento: nrOrcamento,
@@ -387,11 +394,21 @@ const Orcamento = () => {
         tamanho: tamanho,
         cor: cor,
         bordado: bordado,
-        variavel: variavel
+        variavel: variavel,
       });
     }
-  }, [itemId,nrOrcamento, cliente, produto, tamanho, cor, bordado,estampa, variavel, editMode]);
-
+  }, [
+    itemId,
+    nrOrcamento,
+    cliente,
+    produto,
+    tamanho,
+    cor,
+    bordado,
+    estampa,
+    variavel,
+    editMode,
+  ]);
 
   return (
     <form onSubmit={handleSubmit}>
@@ -677,35 +694,40 @@ const Orcamento = () => {
               }}
               options={normalize(variaveis)}
               renderInput={(params) => (
-                <TextField {...params} variant="standard" label="Variavel" />
+                <TextField {...params} variant="standard" label="Variável" />
               )}
               multiple
               fullWidth
             />
-            {editMode ? <Button
-              disabled={desabilitado}
-              sx={{ m: 2 }}
-              variant="contained"
-              color="success"
-              onClick={() => {
-                updateItem(item.id, item);
-              }}
-            >
-              Salvar
-            </Button>
-            :
-            <Button
-              disabled={desabilitado}
-              sx={{ m: 2 }}
-              variant="contained"
-              color="success"
-              onClick={() => {
-                addItem(item);
-              }}
-            >
-              Adicionar +
-            </Button>
-            }
+            <div className="tabtwo-btn_list">
+              {editMode ? (
+                <Button
+                  disabled={desabilitado}
+                  sx={{ m: 2 }}
+                  variant="contained"
+                  color="success"
+                  onClick={() => {
+                    updateItem(item.id, item);
+                  }}
+                  className="btn_list"
+                >
+                  Salvar
+                </Button>
+              ) : (
+                <Button
+                  disabled={desabilitado}
+                  sx={{ m: 2 }}
+                  variant="contained"
+                  color="success"
+                  onClick={() => {
+                    addItem(item);
+                  }}
+                  className="btn_list"
+                >
+                  Adicionar +
+                </Button>
+              )}
+            </div>
             <ListaProdutos
               itens={itens}
               apagarItem={apagarItem}
@@ -713,8 +735,13 @@ const Orcamento = () => {
             />
           </div>
         </ContainerOrcamento>
-        <Grid container spacing={5} sx={{ m: 2 }}>
-          <Grid item>
+        <Grid
+          container
+          spacing={5}
+          sx={{ m: 2 }}
+          className="container-total_sub"
+        >
+          <Grid item className="input-total_sub">
             <TextField
               id="valorPedido"
               label="Valor do Pedido"
@@ -731,16 +758,18 @@ const Orcamento = () => {
               variant="standard"
             />
           </Grid>
-          <Grid item>
-            <Button variant="contained" color="success" type="submit">
-              Aprovar
-            </Button>
-          </Grid>
-          <Grid item>
-            <Button variant="contained" color="error">
-              Cancelar
-            </Button>
-          </Grid>
+          <div className="container-btn_sub">
+            <Grid item>
+              <Button variant="contained" color="success" type="submit">
+                Aprovar
+              </Button>
+            </Grid>
+            <Grid item>
+              <Button variant="contained" color="error">
+                Cancelar
+              </Button>
+            </Grid>
+          </div>
         </Grid>
       </ContainerTabs>
     </form>

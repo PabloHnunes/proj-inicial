@@ -12,6 +12,23 @@ export const ContainerTabs = styled.div`
   border-start-end-radius: 10px;
   box-shadow: 10px 2px 10px #ccc;
   height: auto;
+
+  .container-total_sub{
+    display: flex ;
+    justify-content: space-between;
+    width: auto;
+    margin-right: 0;
+  .input-total_sub{
+    padding-left: 0 ;
+  }
+  .container-btn_sub{
+    margin-top: 5% ;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 220px ;
+    }
+  }
 `;
 
 export const ContainerOrcamento = styled.div`
@@ -58,6 +75,17 @@ export const ContainerOrcamento = styled.div`
     background: #f0f8ff;
     padding: 20px;
   }
+
+  .tabtwo-btn_list{
+    display:flex;
+    justify-content: right;
+    align-items: center;
+    .btn_list{
+      margin: 0px;
+      margin-top: 10px;
+    }
+  }
+
   @media (max-width: 465px) {
     .tabs .tab,
     .tabs .tabs-label {
